@@ -12,8 +12,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="../LIB/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="../CSS/fooster.css" rel="stylesheet">
-        <link rel="shortcut icon" href="IMG/logo.ico" />
-        <title>Sistema de gestion - Home</title>
+        <link rel="shortcut icon" href="../IMG/logo.ico" />
+        <title>Sistema de gestion - Inventario</title>
 
     </head>
     <body class="p-3 m-0 border-0 bd-example m-0 border-0 bg-light">
@@ -34,7 +34,7 @@
             <div class="row"> 
                 <div class="col">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="#">Inicio</a>
+                        <a class="navbar-brand" href="../Home.jsp">Inicio</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -47,10 +47,10 @@
                                     <a class="nav-link" href="#">Gestión de Usuarios</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#">Inventario</a>
+                                    <a class="nav-link" href="">Crear Inventario</a>
                                 </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <a class="nav-link dropdown-toggle" href="Inventario.jsp" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         Inventario
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -68,6 +68,46 @@
                     </nav>
                 </div>
             </div>
+            <!--inicio de pagina -->
+            <div class="row">
+                <div class="col col-lg mt-3 border rounded">
+                    <div class="col">
+                        <form id="inventoryForm" method="post" onsubmit="return false;">
+                            <h2> Creación de inventario</h2>
+                            <div class="mb-3 col">
+                                <label for="inventoryName" class="form-label">Nombre inventario</label>
+                                <input type="text" class="form-control" id="inventoryName" aria-describedby="emailHelp">
+                                <div id="emailHelp" class="form-text">Ingresa el nombre del inventario</div>
+                            </div>
+                            <div class="mb-3border rounded">
+                                <h3 class="">Encabezados de tabla</h3>
+                                <button type="button" class="btn btn-primary" onclick="addHeader()">Agregar encabezado</button>
+                                <div id="headerContainer" class="m-3">
+                                    <!-- Aquí se agregarán dinámicamente los encabezados -->
+                                </div>
+                            </div>
+                            <div class="border rounded mb-3">
+                                <div class="form-check m-2 ">
+                                    <input class="form-check-input" type="checkbox" value="" id="autoIdentifiers">
+                                    <label class="form-check-label" for="autoIdentifiers">
+                                        Crear identificadores automáticamente
+                                    </label>
+                                </div>
+                                <div class="form-check m-2">
+                                    <input class="form-check-input" type="checkbox" value="" id="visibility" checked>
+                                    <label class="form-check-label" for="visibility">
+                                        Visibilidad para todos los usuarios
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="m-3">
+                                <button type="button" class="btn btn-primary" onclick="sendFormDataToServlet()">Crear Inventario</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
 
             <!--FIN CUERPO-->
         </div>
@@ -82,5 +122,9 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
         <script src="../LIB/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
         <script src="../LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+        <script src="../JS/agregarEncabezado.js"></script>
+
+
+
     </body>
 </html>
