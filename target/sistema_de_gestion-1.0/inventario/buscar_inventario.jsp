@@ -1,7 +1,7 @@
 <%-- 
-    Document   : Home
-    Created on : 09-04-2024, 1:17:16 p. m.
-    Author     : Rodrigo
+    Document   : Inventario
+    Created on : 10-04-2024, 1:10:08 p. m.
+    Author     : Admin_sala
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -10,18 +10,18 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="LIB/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
-        <link href="CSS/fooster.css" rel="stylesheet">
-        <link rel="shortcut icon" href="IMG/logo.ico" />
-        <title>Sistema de gestion - Home</title>
+        <link href="../LIB/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+        <link href="../CSS/fooster.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../IMG/logo.ico" />
+        <title>Sistema de gestion - Inventario</title>
 
     </head>
     <body class="p-3 m-0 border-0 bd-example m-0 border-0 bg-light">
-        <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+        <script src="../LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
         <div class="container">
             <div class="row align-items-start">
                 <div class="col">
-                    <img src="IMG/logo.png" class="img-fluid rounded float-start" alt="logo" width="100" height="100">
+                    <img src="../IMG/logo.png" class="img-fluid rounded float-start" alt="logo" width="100" height="100">
                     <div class="col"> <span class="font-weight-normal"> Liceo Juan Dante Parraguez Arellano</span> </div>
                     <div class="col"> <span class="font-weight-normal">Sistema de Inventario integral</span> </div>
                 </div>
@@ -34,7 +34,7 @@
             <div class="row"> 
                 <div class="col">
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="Home.jsp">Inicio</a>
+                        <a class="navbar-brand" href="../Home.jsp">Inicio</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -52,9 +52,9 @@
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 
-                                         <a class="dropdown-item" href="inventario/crear_inventario.jsp">Crear Inventario</a>
-                                        <a class="dropdown-item" href="inventario/buscar_inventario.jsp">Buscar Inventario</a>
-                                        <a class="dropdown-item" href="inventario/editar_inventario.jsp">Editar Inventario</a>
+                                        <a class="dropdown-item" href="../inventario/crear_inventario.jsp">Crear Inventario</a>
+                                        <a class="dropdown-item" href="../inventario/buscar_inventario.jsp">Buscar Inventario</a>
+                                        <a class="dropdown-item" href="../inventario/editar_inventario.jsp">Editar Inventario</a>
                                     </div>
                                 </li>
 
@@ -76,6 +76,72 @@
                     </nav>
                 </div>
             </div>
+            <!--inicio de pagina -->
+            <div class="container">
+                <div class="row">
+                    <div class="col ">
+                        <form id="" method="post" action="" class="form">
+                            <div class="m-2">
+                                <label for="Name" class="h3">Buscar Inventario</label>
+
+                            </div>
+                            <div id="" class="d-flex flex-row align-items-center mb-2">
+                                <input type="text" class="form-control me-2" placeholder="Ingresa el nombre del inventario a buscar">
+                                <button class="btn btn-primary">Buscar</button>
+                            </div>
+                        </form>
+
+                    </div>
+
+                    <div class="w-100"></div>
+
+                    <div class="col ">
+                        <table class="table m-2 border">
+                            <thead class="table-active">
+                                <tr>
+                                    <th>Nro</th>
+                                    <th>Creador</th>
+                                    <th style="width: 300px;">Nombre Inventario</th>
+                                    <th style="width: 300px;">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border">
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td>Doe</td>
+                                    <td>
+                                        <button class="btn btn-danger">Eliminar</button>
+                                        <button class="btn btn-warning">Editar Encabezados</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane</td>
+                                    <td>Doe</td>
+                                    <td>
+                                        <button class="btn btn-danger">Eliminar</button>
+                                        <button class="btn btn-warning">Editar Encabezados</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Mike</td>
+                                    <td>Smith</td>
+                                    <td>
+                                        <button class="btn btn-danger">Eliminar</button>
+                                        <button class="btn btn-warning">Editar Encabezados</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+
+                    </div>
+
+                </div>
+            </div>
+
 
             <!--FIN CUERPO-->
         </div>
@@ -88,7 +154,7 @@
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
-        <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-        <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+        <script src="../LIB/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     </body>
 </html>

@@ -33,8 +33,8 @@
             <!--CUERPO DE PAGINA WEB-->
             <div class="row"> 
                 <div class="col">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="../Home.jsp">Inicio</a>
+                                       <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                                           <a class="navbar-brand" href="../Home.jsp">Inicio</a>
                         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
@@ -46,15 +46,23 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Gestión de Usuarios</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="">Crear Inventario</a>
-                                </li>
                                 <li class="nav-item dropdown">
-                                    <a class="nav-link dropdown-toggle" href="Inventario.jsp" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Inventario
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                         Gestion de inventario
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Pañol</a>
+
+                                        <a class="dropdown-item" href="../inventario/crear_inventario.jsp">Crear Inventario</a>
+                                        <a class="dropdown-item" href="../inventario/buscar_inventario.jsp">Buscar Inventario</a>
+                                        <a class="dropdown-item" href="../inventario/editar_inventario.jsp">Editar Inventario</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Inventarios creados
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="#">Tic</a>
                                         <a class="dropdown-item" href="#">Sala de clase</a>
                                     </div>
@@ -123,8 +131,5 @@
         <script src="../LIB/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
         <script src="../LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
         <script src="../JS/agregarEncabezado.js"></script>
-
-
-
     </body>
 </html>

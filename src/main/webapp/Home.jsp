@@ -46,15 +46,23 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Gestión de Usuarios</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="inventario/Inventario.jsp">Crear Inventario</a>
-                                </li>
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Inventarios
+                                        Gestion de inventario
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Pañol</a>
+
+                                         <a class="dropdown-item" href="inventario/crear_inventario.jsp">Crear Inventario</a>
+                                        <a class="dropdown-item" href="inventario/buscar_inventario.jsp">Buscar Inventario</a>
+                                        <a class="dropdown-item" href="inventario/editar_inventario.jsp">Editar Inventario</a>
+                                    </div>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        Inventarios creados
+                                    </a>
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <a class="dropdown-item" href="#">Tic</a>
                                         <a class="dropdown-item" href="#">Sala de clase</a>
                                     </div>
