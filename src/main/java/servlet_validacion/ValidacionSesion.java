@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import modelo.sql.CRUD_Usuario;
 
 /**
  *
@@ -22,12 +23,6 @@ public class ValidacionSesion extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-                String usuario = request.getParameter("usuario");
-        String contrasenia = request.getParameter("contra");
-        
-        System.out.println(usuario);
-        System.out.println(contrasenia);
-        
 
     }
 
@@ -35,14 +30,7 @@ public class ValidacionSesion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
-                String usuario = request.getParameter("usuario");
-        String contrasenia = request.getParameter("contra");
-        
-        System.out.println(usuario);
-        System.out.println(contrasenia);
-        
-        
+         
     }
 
     @Override
@@ -50,11 +38,20 @@ public class ValidacionSesion extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
         
+        CRUD_Usuario crud = new CRUD_Usuario();
+
         String usuario = request.getParameter("usuario");
         String contrasenia = request.getParameter("contra");
         
-        System.out.println(usuario);
-        System.out.println(contrasenia);
+        
+        if(crud.validar_credenciales(usuario, contrasenia)){
+            System.out.println("Usuario Registrado");
+            response.sendRedirect("Home.jsp");
+        }else{
+             response.sendRedirect("index.jsp");
+            System.out.println("Usuario no registrado");
+        }
+       
         
         
     }

@@ -54,7 +54,6 @@
 
                                          <a class="dropdown-item" href="inventario/crear_inventario.jsp">Crear Inventario</a>
                                         <a class="dropdown-item" href="inventario/buscar_inventario.jsp">Buscar Inventario</a>
-                                        <a class="dropdown-item" href="inventario/editar_inventario.jsp">Editar Inventario</a>
                                     </div>
                                 </li>
 

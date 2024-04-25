@@ -54,7 +54,6 @@
 
                                         <a class="dropdown-item" href="../inventario/crear_inventario.jsp">Crear Inventario</a>
                                         <a class="dropdown-item" href="../inventario/buscar_inventario.jsp">Buscar Inventario</a>
-                                        <a class="dropdown-item" href="../inventario/editar_inventario.jsp">Editar Inventario</a>
                                     </div>
                                 </li>
 
@@ -96,6 +95,10 @@
                     <div class="w-100"></div>
 
                     <div class="col ">
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border m-3" role="status">
+                            </div>
+                        </div>
                         <table class="table m-2 border">
                             <thead class="table-active">
                                 <tr>
@@ -112,7 +115,7 @@
                                     <td>Doe</td>
                                     <td>
                                         <button class="btn btn-danger">Eliminar</button>
-                                        <button class="btn btn-warning">Editar Encabezados</button>
+                                        <a class="btn btn-warning" href="editar_inventario.jsp">Editar Encabezados</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -121,7 +124,7 @@
                                     <td>Doe</td>
                                     <td>
                                         <button class="btn btn-danger">Eliminar</button>
-                                        <button class="btn btn-warning">Editar Encabezados</button>
+                                        <a class="btn btn-warning" href="editar_inventario.jsp">Editar Encabezados</a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -130,13 +133,11 @@
                                     <td>Smith</td>
                                     <td>
                                         <button class="btn btn-danger">Eliminar</button>
-                                        <button class="btn btn-warning">Editar Encabezados</button>
+                                        <a class="btn btn-warning" href="editar_inventario.jsp">Editar Encabezados</a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
-
-
                     </div>
 
                 </div>

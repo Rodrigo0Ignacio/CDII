@@ -1,5 +1,9 @@
-modelo\DatosFormulario.class
 servlet_validacion\ValidacionSesion.class
-cl\liceojuandanteparraguez\sistema_de_gestion\JakartaRestConfiguration.class
+modelo\entidad\Usuario.class
+modelo\sql\CRUD_Usuario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\resources\JakartaEE10Resource.class
 servlet_procesamientoDatos\datosInventario.class
+modelo\DatosFormulario.class
+cl\liceojuandanteparraguez\sistema_de_gestion\JakartaRestConfiguration.class
+modelo\sql\SQL_Conexion.class
+modelo\sql\SQL_CRUD.class

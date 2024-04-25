@@ -36,12 +36,12 @@
                     <form class="form" action="ValidacionSesion" method="post" id="inicio_sesion">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Usuario</label>
-                            <input type="text" name="usuario" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <input type="text" name="usuario" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
                             <div id="emailHelp" class="form-text"></div>
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">contraseña</label>
-                            <input type="text" name="contra" class="form-control" id="exampleInputPassword1">
+                            <input type="text" name="contra" class="form-control" id="exampleInputPassword1" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">

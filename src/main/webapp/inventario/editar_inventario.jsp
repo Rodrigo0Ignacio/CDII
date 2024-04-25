@@ -54,7 +54,6 @@
 
                                         <a class="dropdown-item" href="../inventario/crear_inventario.jsp">Crear Inventario</a>
                                         <a class="dropdown-item" href="../inventario/buscar_inventario.jsp">Buscar Inventario</a>
-                                        <a class="dropdown-item" href="../inventario/editar_inventario.jsp">Editar Inventario</a>
                                     </div>
                                 </li>
 
@@ -78,8 +77,45 @@
             </div>
             <!--inicio de pagina -->
             <div class="row">
-                <div class="col col-lg mt-3 border rounded">
+                <h2 class="m-3">Edicion de Encabezados</h2>
+                <div class="col col-lg mt-3  rounded">
                     <div class="col">
+                         <table class="table m-2 border">
+                            <thead class="table-active">
+                                <tr>
+                                    <th>Nro</th>
+                                    <th>Creador</th>
+                                    <th style="width: 300px;">Nombre Inventario</th>
+                                    <th style="width: 300px;">Guardar cambios</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="border">
+                                    <td>1</td>
+                                    <td>John</td>
+                                    <td><input type="text" class="form-control" id="" aria-describedby="" placeholder=""></td>
+                                    <td>
+                                        <a class="btn btn-warning" href="editar_inventario.jsp">Guardar</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Jane</td>
+                                    <td><input type="text" class="form-control" id="" aria-describedby="" placeholder=""></td>
+                                    <td>
+                                        <a class="btn btn-warning" href="editar_inventario.jsp">Guardar</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>3</td>
+                                    <td>Mike</td>
+                                    <td><input type="text" class="form-control" id="" aria-describedby="" placeholder=""></td>
+                                    <td>
+                                        <a class="btn btn-warning" href="editar_inventario.jsp">Guardar</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                        
                     </div>
                 </div>

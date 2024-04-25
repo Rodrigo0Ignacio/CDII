@@ -10,6 +10,9 @@ import java.io.PrintWriter;
 import modelo.DatosFormulario;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import java.util.ArrayList;
+import modelo.entidad.Usuario;
+import modelo.sql.CRUD_Usuario;
 
 
 /**
@@ -21,6 +24,8 @@ public class datosInventario extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
+       
 
     }
 
@@ -36,6 +41,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
     // Configurar el tipo de contenido de la respuesta
     response.setContentType("application/json");
+    
 
     // Obtener el cuerpo de la solicitud (los datos enviados desde el cliente)
     String requestBody = request.getReader().lines()
@@ -55,8 +61,13 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
     JsonObject jsonResponse = new JsonObject();
     jsonResponse.addProperty("message", "Datos recibidos correctamente en el servidor.");
     
+        
+      
+    
     //DATOS FORMATEADOS
     jsonResponse.addProperty("Nombre del Inventario", nombreInventario);
+    
+        
     
     for(int i = 0 ; i < headers.length ; i++){
         jsonResponse.addProperty("Dato: "+i, headers[i]);
