@@ -1,10 +1,13 @@
 package modelo.sql;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -23,10 +26,10 @@ public class SQL_Conexion {
     private Connection con = null;
     public ResultSet rs = null;
     public Statement st = null;
-    public String query;
-    public String tabla;
-    public  ArrayList lista;
-    
+    public PreparedStatement ps = null;
+    public String query = null;
+    public String tabla = null;
+    public ArrayList lista = null;
 
     public SQL_Conexion() {
 
@@ -57,6 +60,23 @@ public class SQL_Conexion {
             Logger.getLogger(SQL_Conexion.class.getName()).log(Level.SEVERE, null, ex);
         }
         return con;
+    }
+
+    public boolean estado_conexion() {
+
+        if (conectar() == null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public Date obtenerFechaActual() {
+        LocalDate fecha = LocalDate.now();
+
+        Date fechaUtil = java.sql.Date.valueOf(fecha);
+
+        return fechaUtil;
     }
 
 }

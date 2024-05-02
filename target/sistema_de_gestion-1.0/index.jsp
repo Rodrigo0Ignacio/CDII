@@ -6,6 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+
 <html lang="es">
     <head>
         <meta charset="utf-8">
@@ -33,7 +34,7 @@
 
                     <h1>Bienvenido</h1>
 
-                    <form class="form" action="ValidacionSesion" method="post" id="inicio_sesion">
+                    <form class="form" action="Sesion" method="post" id="inicio_sesion">
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Usuario</label>
                             <input type="text" name="usuario" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required>
@@ -41,16 +42,22 @@
                         </div>
                         <div class="mb-3">
                             <label for="exampleInputPassword1" class="form-label">contraseña</label>
-                            <input type="text" name="contra" class="form-control" id="exampleInputPassword1" required>
+                            <input type="password" name="contra" class="form-control" id="exampleInputPassword1" required>
                         </div>
                         <div class="mb-3 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">recordar credenciales</label>
                         </div>
-                        <button type="submit" class="btn btn-primary">Ingresar</button>
+                        <button type="submit" class="btn btn-primary">Ingresar</button> 
                     </form>
-
                 </div>
+                <% if (request.getAttribute("valida") != null && (boolean)request.getAttribute("valida") != true) { %>
+                <div class="alert alert-danger" role="alert" id="alerta">
+                    <span>Usuario no encontrado</span>
+                </div>
+                <script src="JS/alerta.js"> </script>
+                <% } %>
+
             </div>
         </div>
         <footer class="bg-body-tertiary text-center text-lg-start">

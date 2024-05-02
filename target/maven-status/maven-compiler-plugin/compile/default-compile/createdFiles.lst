@@ -1,9 +1,9 @@
-servlet_validacion\ValidacionSesion.class
 modelo\entidad\Usuario.class
 modelo\sql\CRUD_Usuario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\resources\JakartaEE10Resource.class
-servlet_procesamientoDatos\datosInventario.class
 modelo\DatosFormulario.class
+controlador\servlet\datos\datosInventario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\JakartaRestConfiguration.class
+controlador\servlet\validaciones\Sesion.class
 modelo\sql\SQL_Conexion.class
 modelo\sql\SQL_CRUD.class

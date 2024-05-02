@@ -7,15 +7,19 @@
     </servlet>
     <servlet>
         <servlet-name>datosInventario</servlet-name>
-        <servlet-class>servlet_procesamientoDatos.datosInventario</servlet-class>
+        <servlet-class>controlador.servlet.datos</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>ValidacionSesion</servlet-name>
-        <url-pattern>/ValidacionSesion</url-pattern>
-    </servlet-mapping>
+    <servlet>
+        <servlet-name>Sesion</servlet-name>
+        <servlet-class>controlador.servlet.validaciones.Sesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>datosInventario</servlet-name>
         <url-pattern>/datosInventario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Sesion</servlet-name>
+        <url-pattern>/Sesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
