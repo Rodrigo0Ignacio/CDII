@@ -12,7 +12,7 @@ public interface Inventario_CRUD {
     
     public ArrayList leer_datos();
     
-    public boolean escribir_Datos(String autor, Date Fecha_Creacion, String categoria, String nombre_inventario, String[] columnas);
+    public boolean escribir_Datos(String autor, Date Fecha_Creacion, String categoria, String nombre_inventario);
     
     public boolean actualizar_Datos();
     

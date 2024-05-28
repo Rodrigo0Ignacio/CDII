@@ -12,12 +12,12 @@ import modelo.sql.interface_CRUD.Inventario_CRUD;
  * @author Admin_sala
  */
 public class CRUD_Inventario extends SQL_Conexion implements Inventario_CRUD{
- /*PENDIENTEEEEEEEEEEEEEEEEEEEEE*/
+
     @Override
     public ArrayList<Inventario> leer_datos() {
     ArrayList<Inventario> lista = new ArrayList<>();
 
-    String query = "SELECT * FROM Inventario";
+    String query = "SELECT * FROM creacion_inventario";
 
     try {
         // Ejecutar la consulta
@@ -26,19 +26,10 @@ public class CRUD_Inventario extends SQL_Conexion implements Inventario_CRUD{
 
         // Recorrer los resultados
         while (rs.next()) {
-            // Obtener los valores de cada columna
-            String autor = rs.getString("AUTOR");
-            Date fechaCreacion = rs.getDate("FECHA_CREACION");
-            String categoria = rs.getString("CATEGORIA");
-            String nombreInventario = rs.getString("NOMBRE_INVENTARIO");
-            String columnasString = rs.getString("COLUMNAS");
-            String[] columnas = columnasString.split(","); // Convertir la cadena de columnas separadas por comas en un array de cadenas
-
-            // Crear una instancia de Inventario y añadirla a la lista
-            Inventario inventario = new Inventario(autor, fechaCreacion, categoria, nombreInventario, columnas);
-            lista.add(inventario);
+            lista.add(new Inventario(
+            rs.getInt(1),rs.getString(2),rs.getDate(3),rs.getString(4),rs.getString(5)
+            ));
         }
-
     } catch (SQLException e) {
         System.out.println(e);
     }
@@ -47,8 +38,26 @@ public class CRUD_Inventario extends SQL_Conexion implements Inventario_CRUD{
 }
 
     @Override
-    public boolean escribir_Datos(String autor, Date Fecha_Creacion, String categoria, String nombre_inventario, String[] columnas) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    public boolean escribir_Datos(String autor, Date Fecha_Creacion, String categoria, String nombre_inventario) {
+        
+        
+         query = "INSERT INTO creacion_inventario (AUTOR,FECHA_CREACION,CATEGORIA,NOMBRE_INVENTARIO) VALUES (?, ?, ?, ?)";
+        
+        try {
+            ps = conectar().prepareStatement(query);
+            ps.setString(1, autor);
+            ps.setDate(2, Fecha_Creacion);
+            ps.setString(3, categoria);
+            ps.setString(4, nombre_inventario);
+            
+            int filasInsertadas = ps.executeUpdate();
+            Desconectar();
+            
+            return filasInsertadas > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     @Override

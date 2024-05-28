@@ -9,18 +9,40 @@ import java.sql.Date;
  */
 public class Inventario {
     
+    private int id;
     private String autor;
     private Date Fecha_Creacion;
     private String categoria;
     private String nombre_inventario;
     private String[] columnas;
 
-    public Inventario(String autor, Date Fecha_Creacion, String categoria, String nombre_inventario, String[] columnas) {
+    public Inventario(int id, String autor, Date Fecha_Creacion, String categoria, String nombre_inventario) {
+        this.id = id;
+        this.autor = autor;
+        this.Fecha_Creacion = Fecha_Creacion;
+        this.categoria = categoria;
+        this.nombre_inventario = nombre_inventario;
+    }
+
+    public Inventario(int id, String autor, Date Fecha_Creacion, String categoria, String nombre_inventario, String[] columnas) {
+        this.id = id;
         this.autor = autor;
         this.Fecha_Creacion = Fecha_Creacion;
         this.categoria = categoria;
         this.nombre_inventario = nombre_inventario;
         this.columnas = columnas;
+    }
+
+    public Inventario() {
+    }
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getAutor() {
@@ -62,10 +84,6 @@ public class Inventario {
     public void setColumnas(String[] columnas) {
         this.columnas = columnas;
     }
-    
-    
-    
-    
-    
+
     
 }

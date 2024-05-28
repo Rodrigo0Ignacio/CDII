@@ -1,9 +1,14 @@
-modelo\entidad\Usuario.class
+modelo\entidad\Variable_SQL.class
 modelo\sql\CRUD_Usuario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\resources\JakartaEE10Resource.class
+modelo\entidad\Inventario.class
+modelo\sql\CRUD_CreaTabla.class
+modelo\sql\CRUD_Inventario.class
 modelo\DatosFormulario.class
-controlador\servlet\datos\datosInventario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\JakartaRestConfiguration.class
 controlador\servlet\validaciones\Sesion.class
+modelo\entidad\Usuario.class
+modelo\sql\Usuario_CRUD.class
+controlador\servlet\procesos\Creacion_Inventario.class
+modelo\sql\interface_CRUD\Inventario_CRUD.class
 modelo\sql\SQL_Conexion.class
-modelo\sql\SQL_CRUD.class
