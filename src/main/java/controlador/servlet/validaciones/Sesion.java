@@ -9,8 +9,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import modelo.sql.CRUD_BuscarInventario;
 import modelo.sql.CRUD_Usuario;
-
 
 /**
  *
@@ -18,10 +19,9 @@ import modelo.sql.CRUD_Usuario;
  */
 public class Sesion extends HttpServlet {
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       
+
     }
 
     @Override
@@ -34,23 +34,30 @@ public class Sesion extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+
+        CRUD_Usuario crud = new CRUD_Usuario();
         
-         CRUD_Usuario crud = new CRUD_Usuario();
+       
 
         String usuario = request.getParameter("usuario");
         String contrasenia = request.getParameter("contra");
-        
-         if(crud.validar_credenciales(usuario, contrasenia)){
-           
-            response.sendRedirect("Home.jsp");
-        }else{  
-           request.setAttribute("valida", false);
-           request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        if (crud.validar_credenciales(usuario, contrasenia)) {
+            
+          //  request.setAttribute("listaInventario",crud.listarNombres_Inventarios());
+            request.getRequestDispatcher("Home.jsp").forward(request, response);
+            
+            
+
+        } else {
+            request.setAttribute("valida", false);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
 
         }
-        
-        
+
     }
+
+
 
     @Override
     public String getServletInfo() {

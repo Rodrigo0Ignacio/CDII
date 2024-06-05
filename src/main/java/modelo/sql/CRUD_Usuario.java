@@ -57,9 +57,9 @@ public class CRUD_Usuario extends SQL_Conexion implements Usuario_CRUD {
 
     @Override
     public boolean escribir_Datos(String rut, String nombres, String apellidos, String email, String password) {
-        
+
         String query = "INSERT INTO USUARIO (RUT, NOMBRES, APELLIDOS, EMAIL, FECHA_CREACION, PASSWORD) VALUES (?, ?, ?, ?, ?, ?)";
-        
+
         try {
             ps = conectar().prepareStatement(query);
             ps.setString(1, rut);
@@ -68,10 +68,10 @@ public class CRUD_Usuario extends SQL_Conexion implements Usuario_CRUD {
             ps.setString(4, email);
             ps.setDate(5, obtenerFechaActual());
             ps.setString(6, password);
-            
+
             int filasInsertadas = ps.executeUpdate();
             Desconectar();
-            
+
             return filasInsertadas > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,6 +89,55 @@ public class CRUD_Usuario extends SQL_Conexion implements Usuario_CRUD {
         return false;
 
     }
+   
+
+    public ArrayList<String> listarNombres_Inventarios() {
+        
+        ArrayList<String> lista_Inventarios = new ArrayList<>();
+        ArrayList<String> lista_formateada = new ArrayList<>();
+
+        query = "SELECT table_name AS 'tabla' FROM information_schema.tables WHERE table_schema = 'cdii' AND table_name LIKE 'inventario%';";
+
+        try {
+            st = conectar().createStatement();
+            rs = st.executeQuery(query);
+            while (rs.next()) {
+
+                lista_Inventarios.add(rs.getString(1));
+            }
+
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
+        for (int i = 0; i < lista_Inventarios.size(); i++) {
+          lista_formateada.add(eliminarPrefijo("inventario", lista_Inventarios.get(i)));
+
+        }
+
+        return lista_Inventarios;
+
+    }
+
+    private String eliminarPrefijo(String prefix, String palabra) {
+
+        palabra = palabra.toUpperCase();
+
+        String nuevoFormato = "";
+
+        if (palabra.startsWith(prefix)) {
+
+            nuevoFormato = palabra.substring(prefix.length());
+
+            if (nuevoFormato.startsWith("_")) {
+                nuevoFormato = nuevoFormato.substring(1);
+            }
+        }
+
+        return nuevoFormato;
+
+    }
+    
 
 
 

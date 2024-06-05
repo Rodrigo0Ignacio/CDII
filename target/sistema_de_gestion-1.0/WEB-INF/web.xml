@@ -7,7 +7,7 @@
     </servlet>
     <servlet>
         <servlet-name>datosInventario</servlet-name>
-        <servlet-class>controlador.servlet.procesos</servlet-class>
+        <servlet-class>controlador.servlet.procesos.datosInventario</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Sesion</servlet-name>
@@ -15,25 +15,31 @@
     </servlet>
     <servlet>
         <servlet-name>Creacion_Inventario</servlet-name>
-        <url-pattern>/Creacion_Inventario</url-pattern>
         <servlet-class>controlador.servlet.procesos.Creacion_Inventario</servlet-class>
+        <url-pattern>/Creacion_Inventario</url-pattern>
+    </servlet>
+    <servlet>
+        <servlet-name>BuscarInventario</servlet-name>
+        <servlet-class>controlador.servlet.procesos.BuscarInventario</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>datosInventario</servlet-name>
         <url-pattern>/datosInventario</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>Creacion_Inventario</servlet-name>
+        <url-pattern>/Creacion_Inventario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>Sesion</servlet-name>
         <url-pattern>/Sesion</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>Creacion_Inventario</servlet-name>
-        <url-pattern>/Creacion_Inventario</url-pattern>
+        <servlet-name>BuscarInventario</servlet-name>
+        <url-pattern>/BuscarInventario</url-pattern>
     </servlet-mapping>
     <session-config>
-        <session-timeout>
-            90
-        </session-timeout>
+        <session-timeout>90</session-timeout>
     </session-config>
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

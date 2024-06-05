@@ -8,7 +8,7 @@ import modelo.entidad.Inventario;
 
 public class CRUD_CreaTabla extends CRUD_Inventario {
 
-    private Inventario inventario;
+   // private Inventario inventario;
 
     public CRUD_CreaTabla() {
     }

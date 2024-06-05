@@ -6,9 +6,12 @@ modelo\sql\CRUD_CreaTabla.class
 modelo\sql\CRUD_Inventario.class
 modelo\DatosFormulario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\JakartaRestConfiguration.class
+controlador\servlet\procesos\BuscarInventario.class
 controlador\servlet\validaciones\Sesion.class
+modelo\sql\CRUD_BuscarInventario.class
 modelo\entidad\Usuario.class
 modelo\sql\Usuario_CRUD.class
+modelo\entidad\TablaCreada.class
 controlador\servlet\procesos\Creacion_Inventario.class
 modelo\sql\interface_CRUD\Inventario_CRUD.class
 modelo\sql\SQL_Conexion.class

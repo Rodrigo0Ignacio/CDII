@@ -1,10 +1,10 @@
-<%-- 
-    Document   : Home
-    Created on : 09-04-2024, 1:17:16 p. m.
-    Author     : Rodrigo
---%>
-
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="modelo.sql.CRUD_Usuario" %>
+<%
+CRUD_Usuario c = new CRUD_Usuario();
+ArrayList<String> listaInventarios = c.listarNombres_Inventarios(); // Asumiendo que este método devuelve una lista de nombres de inventarios
+%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -14,7 +14,6 @@
         <link href="CSS/fooster.css" rel="stylesheet">
         <link rel="shortcut icon" href="IMG/logo.ico" />
         <title>Sistema de gestion - Home</title>
-
     </head>
     <body class="p-3 m-0 border-0 bd-example m-0 border-0 bg-light">
         <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
@@ -51,19 +50,19 @@
                                         Gestion de inventario
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-
-                                         <a class="dropdown-item" href="inventario/crear_inventario.jsp">Crear Inventario</a>
-                                        <a class="dropdown-item" href="inventario/buscar_inventario.jsp">Buscar Inventario</a>
+                                        <a class="dropdown-item" href="crear_inventario.jsp">Crear Inventario</a>
+                                        <a class="dropdown-item" href="buscar_inventario.jsp">Buscar Inventario</a>
                                     </div>
                                 </li>
-
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        Inventarios creados
+                                        Inventarios Creados
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <a class="dropdown-item" href="#">Tic</a>
-                                        <a class="dropdown-item" href="#">Sala de clase</a>
+                                        <% if (listaInventarios != null && !listaInventarios.isEmpty()) { 
+                                            for (String item : listaInventarios) { %>
+                                                <a class="dropdown-item" href="#"><%= item %></a>
+                                        <% } } %>
                                     </div>
                                 </li>
                                 <!-- Botón para cerrar sesión -->
@@ -75,7 +74,6 @@
                     </nav>
                 </div>
             </div>
-
             <!--FIN CUERPO-->
         </div>
         <footer class="bg-body-tertiary text-center text-lg-start">

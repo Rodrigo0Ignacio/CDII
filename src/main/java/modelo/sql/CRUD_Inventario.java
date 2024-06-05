@@ -17,7 +17,7 @@ public class CRUD_Inventario extends SQL_Conexion implements Inventario_CRUD{
     public ArrayList<Inventario> leer_datos() {
     ArrayList<Inventario> lista = new ArrayList<>();
 
-    String query = "SELECT * FROM creacion_inventario";
+     query = "SELECT * FROM creacion_inventario";
 
     try {
         // Ejecutar la consulta

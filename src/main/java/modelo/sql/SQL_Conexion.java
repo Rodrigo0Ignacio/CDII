@@ -1,10 +1,12 @@
 package modelo.sql;
 
 import java.sql.Connection;
+import java.sql.DatabaseMetaData;
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
@@ -30,6 +32,9 @@ public class SQL_Conexion {
     public String query = null;
     public String tabla = null;
     public ArrayList lista = null;
+    public DatabaseMetaData metaData;
+    ResultSetMetaData rsm;
+
 
     public SQL_Conexion() {
 
@@ -69,6 +74,42 @@ public class SQL_Conexion {
         } else {
             return false;
         }
+    }
+    
+    public int cantidadColumnas(String nombreTabla){
+        int cantidadColumnas = 0;
+        try {
+            metaData = conectar().getMetaData();
+            rs = metaData.getColumns(null, null, nombreTabla, null);
+            
+            while (rs.next()) {
+                cantidadColumnas ++;
+                
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(SQL_Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return cantidadColumnas;
+        
+    }
+    
+    public ArrayList<String> obtenerEncabezados(String nombreTabla){
+        lista = new ArrayList();
+        
+        try {
+            rsm = rs.getMetaData();
+            
+            for (int i = 1; i <= cantidadColumnas(nombreTabla); i++) {
+                lista.add(rsm.getColumnName(i));
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(SQL_Conexion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return lista;
+        
     }
 
     public Date obtenerFechaActual() {
