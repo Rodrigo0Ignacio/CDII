@@ -2,8 +2,10 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="modelo.sql.CRUD_Usuario" %>
 <%
+    /*
 CRUD_Usuario c = new CRUD_Usuario();
 ArrayList<String> listaInventarios = c.listarNombres_Inventarios(); // Asumiendo que este método devuelve una lista de nombres de inventarios
+*/
 %>
 <!DOCTYPE html>
 <html lang="es">
@@ -59,10 +61,10 @@ ArrayList<String> listaInventarios = c.listarNombres_Inventarios(); // Asumiendo
                                         Inventarios Creados
                                     </a>
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                        <% if (listaInventarios != null && !listaInventarios.isEmpty()) { 
+                                        <% /*if (listaInventarios != null && !listaInventarios.isEmpty()) { 
                                             for (String item : listaInventarios) { %>
                                                 <a class="dropdown-item" href="#"><%= item %></a>
-                                        <% } } %>
+                                        <% /*} }*/ %>
                                     </div>
                                 </li>
                                 <!-- Botón para cerrar sesión -->
@@ -73,7 +75,7 @@ ArrayList<String> listaInventarios = c.listarNombres_Inventarios(); // Asumiendo
                         <button class="btn btn-outline-danger d-none d-lg-inline-block" type="submit">Cerrar sesión</button>
                     </nav>
                 </div>
-            </div>
+            </div>                    
             <!--FIN CUERPO-->
         </div>
         <footer class="bg-body-tertiary text-center text-lg-start">

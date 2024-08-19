@@ -1,144 +1,152 @@
 package modelo.sql;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import modelo.entidad.Usuario;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import modelo.cifrado.Clave;
+import modelo.entidad.usuario.Usuario;
+import modelo.sql.interface_CRUD.CRUD;
 
-/**
- *
- * @author Admin_sala
- */
-public class CRUD_Usuario extends SQL_Conexion implements Usuario_CRUD {
+public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
+
+    public Usuario user;
+    private Clave clave;
+
+    public CRUD_Usuario() throws Exception {
+        clave = new Clave();
+    }
 
     @Override
-    public ArrayList<Usuario> leer_datos() {
-        query = "SELECT * FROM USUARIO";
+    public void crear(Usuario objeto) {
+
+        query = "INSERT INTO usuario (id_usuario, rut_usuario, nombres, paterno, materno, email, fechaCreacion, password, id_rol)"
+                + " VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
+
+        try {
+            ps = conectar().prepareStatement(query);
+
+            //  ps.setInt(1, objeto.getId_usuario());
+            ps.setString(2, objeto.getRut_usuario());
+            ps.setString(3, objeto.getNombres());
+            ps.setString(4, objeto.getPaterno());
+            ps.setString(5, objeto.getMaterno());
+            ps.setString(6, objeto.getEmail());
+            ps.setDate(7, obtenerFechaActual());
+            try {
+                /*INSERTA EL VALOR CIFRADO EN LA BASE DE DATOS*/
+                ps.setString(8, clave.cifrar(objeto.getPassword()));
+
+            } catch (Exception ex) {
+                Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            ps.setInt(9, objeto.getRol());
+
+            ps.close();
+            Desconectar();
+
+        } catch (SQLException e) {
+
+        }
+
+    }
+
+    @Override
+    public ArrayList<Usuario> leer() {
+        query = "SELECT * FROM Usuario ";
         lista = new ArrayList<Usuario>();
 
         try {
-            st = conectar().createStatement();
-            rs = st.executeQuery(query);
-            while (rs.next()) {
+            ps = conectar().prepareStatement(query);
+            rs = ps.executeQuery();
 
-                lista.add(new Usuario(rs.getString("RUT"), rs.getString("NOMBRES"),
-                        rs.getString("APELLIDOS"), rs.getString("EMAIL"),
-                        rs.getDate("FECHA_CREACION"), rs.getString("PASSWORD")));
+            while (rs.next()) {
+                lista.add(
+                        new Usuario(rs.getInt(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
+                                rs.getString(5), rs.getString(6),
+                                rs.getDate(7), rs.getString(8),
+                                rs.getInt(9)));
             }
+            rs.close();
+            ps.close();
+            Desconectar();
 
         } catch (SQLException e) {
-            System.out.println(e);
+
+            e.printStackTrace();
         }
 
         return lista;
 
     }
 
-    public boolean validar_credenciales(String user, String password) {
-        String[] credenciales = new String[2];
-        boolean credencialesEncontradas = false;
-
-        for (int i = 0; i < leer_datos().size(); i++) {
-            if (user.equals(leer_datos().get(i).getEmail()) && password.equals(leer_datos().get(i).getPassword())) {
-                credenciales[0] = leer_datos().get(i).getEmail();
-                credenciales[1] = leer_datos().get(i).getPassword();
-                credencialesEncontradas = true;
-                break;
-            }
-        }
-
-        if (credencialesEncontradas) {
-            return user.equals(credenciales[0]) && password.equals(credenciales[1]);
-        } else {
-            return false; // No se encontraron credenciales, por lo tanto, no son válidas.
-        }
-    }
-
     @Override
-    public boolean escribir_Datos(String rut, String nombres, String apellidos, String email, String password) {
-
-        String query = "INSERT INTO USUARIO (RUT, NOMBRES, APELLIDOS, EMAIL, FECHA_CREACION, PASSWORD) VALUES (?, ?, ?, ?, ?, ?)";
+    public void actualizar(Usuario objeto, String idUsuario) {
+        String query = "UPDATE usuario SET rut_usuario = ?, nombres = ?, paterno = ?, materno = ?, email = ?, password = ?,"
+                + " id_rol = ? WHERE id_usuario = ?";
 
         try {
             ps = conectar().prepareStatement(query);
-            ps.setString(1, rut);
-            ps.setString(2, nombres);
-            ps.setString(3, apellidos);
-            ps.setString(4, email);
-            ps.setDate(5, obtenerFechaActual());
-            ps.setString(6, password);
+            // Configurar los parámetros del PreparedStatement
+            ps.setString(1, objeto.getRut_usuario());
+            ps.setString(2, objeto.getNombres());
+            ps.setString(3, objeto.getPaterno());
+            ps.setString(4, objeto.getMaterno());
+            ps.setString(5, objeto.getEmail());
 
-            int filasInsertadas = ps.executeUpdate();
-            Desconectar();
+            // Cifrar la contraseña antes de almacenarla
+            try {
+                String passwordCifrada = clave.cifrar(objeto.getPassword());
+                ps.setString(6, passwordCifrada);
+            } catch (Exception ex) {
+                Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, "Error al cifrar la contraseña", ex);
+                return; // Salir del método si ocurre un error en el cifrado
+            }
 
-            return filasInsertadas > 0;
+            ps.setInt(7, objeto.getRol());
+            ps.setString(8, idUsuario); // Usar el ID proporcionado para actualizar el registro
+
+            // Ejecutar la actualización
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Actualización exitosa.");
+            } else {
+                System.out.println("No se encontró el registro con el ID proporcionado.");
+            }
         } catch (SQLException e) {
-            e.printStackTrace();
-            return false;
+            Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, "Error al actualizar el registro", e);
+        } finally {
+            Desconectar(); // Asegúrate de cerrar la conexión en el bloque finally
         }
     }
 
     @Override
-    public boolean actualizar_Datos() {
-        return false;
-    }
+    public void eliminar(String i) {
 
-    @Override
-    public boolean modificar_Datos() {
-        return false;
-
-    }
-   
-
-    public ArrayList<String> listarNombres_Inventarios() {
-        
-        ArrayList<String> lista_Inventarios = new ArrayList<>();
-        ArrayList<String> lista_formateada = new ArrayList<>();
-
-        query = "SELECT table_name AS 'tabla' FROM information_schema.tables WHERE table_schema = 'cdii' AND table_name LIKE 'inventario%';";
+        // SQL para eliminar un registro basado en el ID
+        String sql = "DELETE FROM Usuario WHERE rut_usuario = ?";
 
         try {
-            st = conectar().createStatement();
-            rs = st.executeQuery(query);
-            while (rs.next()) {
 
-                lista_Inventarios.add(rs.getString(1));
+            ps = conectar().prepareStatement(sql);
+
+            // Establecer el parámetro ID
+            ps.setString(2, i);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Eliminación exitosa.");
+            } else {
+                System.out.println("No se encontró el registro con el ID proporcionado.");
             }
 
         } catch (SQLException e) {
-            System.out.println(e);
+            e.printStackTrace();
+            System.out.println("Error al eliminar el registro.");
         }
-
-        for (int i = 0; i < lista_Inventarios.size(); i++) {
-          lista_formateada.add(eliminarPrefijo("inventario", lista_Inventarios.get(i)));
-
-        }
-
-        return lista_Inventarios;
 
     }
-
-    private String eliminarPrefijo(String prefix, String palabra) {
-
-        palabra = palabra.toUpperCase();
-
-        String nuevoFormato = "";
-
-        if (palabra.startsWith(prefix)) {
-
-            nuevoFormato = palabra.substring(prefix.length());
-
-            if (nuevoFormato.startsWith("_")) {
-                nuevoFormato = nuevoFormato.substring(1);
-            }
-        }
-
-        return nuevoFormato;
-
-    }
-    
-
-
 
 }

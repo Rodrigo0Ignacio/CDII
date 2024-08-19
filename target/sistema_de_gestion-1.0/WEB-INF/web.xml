@@ -16,7 +16,6 @@
     <servlet>
         <servlet-name>Creacion_Inventario</servlet-name>
         <servlet-class>controlador.servlet.procesos.Creacion_Inventario</servlet-class>
-        <url-pattern>/Creacion_Inventario</url-pattern>
     </servlet>
     <servlet>
         <servlet-name>BuscarInventario</servlet-name>

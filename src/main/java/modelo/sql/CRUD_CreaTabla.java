@@ -4,7 +4,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.entidad.Inventario;
+import modelo.entidad.inventario.Inventario;
 
 public class CRUD_CreaTabla extends CRUD_Inventario {
 

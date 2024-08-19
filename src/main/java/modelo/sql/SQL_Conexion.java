@@ -23,7 +23,7 @@ public class SQL_Conexion {
     private static final String BD = "cdii";
     private static final String URL = "jdbc:mysql://localhost:3306/" + BD;
     private static final String USUARIO = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "root";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";
     private Connection con = null;
     public ResultSet rs = null;
@@ -83,8 +83,7 @@ public class SQL_Conexion {
             rs = metaData.getColumns(null, null, nombreTabla, null);
             
             while (rs.next()) {
-                cantidadColumnas ++;
-                
+                cantidadColumnas ++;   
             }
         } catch (SQLException ex) {
             Logger.getLogger(SQL_Conexion.class.getName()).log(Level.SEVERE, null, ex);

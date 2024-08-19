@@ -35,25 +35,24 @@ public class Sesion extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        CRUD_Usuario crud = new CRUD_Usuario();
+       // CRUD_Usuario crud = new CRUD_Usuario();
         
        
 
         String usuario = request.getParameter("usuario");
         String contrasenia = request.getParameter("contra");
-
+/*
         if (crud.validar_credenciales(usuario, contrasenia)) {
             
-          //  request.setAttribute("listaInventario",crud.listarNombres_Inventarios());
+         //  request.setAttribute("listaInventario",crud.listarNombres_Inventarios());
             request.getRequestDispatcher("Home.jsp").forward(request, response);
             
             
-
         } else {
             request.setAttribute("valida", false);
             request.getRequestDispatcher("index.jsp").forward(request, response);
 
-        }
+        }*/
 
     }
 
