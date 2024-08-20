@@ -5,12 +5,14 @@ C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\entidad
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\controlador\servlet\procesos\Creacion_Inventario.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\sql\SQL_Conexion.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\DatosFormulario.java
+C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\sql\CRUD_Sesion.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\cl\liceojuandanteparraguez\sistema_de_gestion\JakartaRestConfiguration.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\sql\CRUD_Usuario.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\entidad\usuario\Modulo.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\cl\liceojuandanteparraguez\sistema_de_gestion\resources\JakartaEE10Resource.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\controlador\servlet\validaciones\Sesion.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\entidad\usuario\Operacion.java
+C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\controlador\servlet\validaciones\CerrarSesion.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\cifrado\ClaveGenerador.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\entidad\usuario\Roles.java
 C:\Users\Admin_sala\Documents\NetBeansProjects\CDII\src\main\java\modelo\sql\CRUD_BuscarInventario.java

@@ -1,11 +1,9 @@
-
 package modelo.entidad.usuario;
 
 import java.sql.Date;
 
-
 public class Usuario {
-    
+
     private int id_usuario;
     private String rut_usuario;
     private String nombres;
@@ -33,6 +31,18 @@ public class Usuario {
         this.rut_usuario = rut_usuario;
         this.Password = Password;
         this.rol = rol;
+    }
+
+    public Usuario(String rut_usuario, String Password) {
+        this.rut_usuario = rut_usuario;
+        this.Password = Password;
+    }
+
+    public Usuario(int roles, String rut, String nombre) {
+        this.rut_usuario = rut;
+        this.nombres = nombre;
+        this.rol = roles;
+       
     }
 
     public int getId_usuario() {
@@ -107,5 +117,4 @@ public class Usuario {
         this.rol = rol;
     }
 
-    
 }

@@ -21,6 +21,10 @@
         <servlet-name>BuscarInventario</servlet-name>
         <servlet-class>controlador.servlet.procesos.BuscarInventario</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CerrarSesion</servlet-name>
+        <servlet-class>controlador.servlet.validaciones.CerrarSesion</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>datosInventario</servlet-name>
         <url-pattern>/datosInventario</url-pattern>
@@ -36,6 +40,10 @@
     <servlet-mapping>
         <servlet-name>BuscarInventario</servlet-name>
         <url-pattern>/BuscarInventario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CerrarSesion</servlet-name>
+        <url-pattern>/CerrarSesion</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>90</session-timeout>

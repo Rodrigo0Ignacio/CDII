@@ -1,4 +1,5 @@
 modelo\entidad\inventario\Inventario.class
+modelo\sql\CRUD_Sesion.class
 modelo\sql\CRUD_Usuario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\resources\JakartaEE10Resource.class
 modelo\entidad\usuario\Usuario.class
@@ -15,6 +16,7 @@ modelo\sql\CRUD_BuscarInventario.class
 modelo\cifrado\ClaveGenerador.class
 modelo\entidad\usuario\Operacion.class
 controlador\servlet\procesos\Creacion_Inventario.class
+controlador\servlet\validaciones\CerrarSesion.class
 modelo\cifrado\AESEncryption.class
 modelo\cifrado\Clave.class
 modelo\entidad\inventario\TablaCreada.class

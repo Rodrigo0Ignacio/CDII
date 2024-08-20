@@ -1,12 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="modelo.sql.CRUD_Usuario" %>
 <%
-    /*
-CRUD_Usuario c = new CRUD_Usuario();
-ArrayList<String> listaInventarios = c.listarNombres_Inventarios(); // Asumiendo que este método devuelve una lista de nombres de inventarios
-*/
+    // Verificar si la sesión existe
+    if (session == null || (session.getAttribute("ROL") == null && session.getAttribute("RUT") == null) ) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
 %>
+
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -27,7 +29,7 @@ ArrayList<String> listaInventarios = c.listarNombres_Inventarios(); // Asumiendo
                     <div class="col"> <span class="font-weight-normal">Sistema de Inventario integral</span> </div>
                 </div>
                 <div class="col-3 align-items-ent align-self-center fs-5 fw-bold">
-                    <div class="col"> <span class="font-weight-normal">Bienvenido: </span><span>Nombre Usuario</span> </div>
+                    <div class="col"> <span class="font-weight-normal">Bienvenido: </span><span><%= session.getAttribute("NOMBRE")%></span> </div>
                 </div>
             </div>
             <hr>
@@ -63,16 +65,21 @@ ArrayList<String> listaInventarios = c.listarNombres_Inventarios(); // Asumiendo
                                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                         <% /*if (listaInventarios != null && !listaInventarios.isEmpty()) { 
                                             for (String item : listaInventarios) { %>
-                                                <a class="dropdown-item" href="#"><%= item %></a>
+                                        <a class="dropdown-item" href="#"><%= item %></a>
                                         <% /*} }*/ %>
                                     </div>
                                 </li>
                                 <!-- Botón para cerrar sesión -->
-                                <button class="btn btn-outline-danger d-lg-none ml-auto" type="submit">Cerrar sesión</button>
+                                <form action="CerrarSesion" method="post">
+                                    <button class="btn btn-outline-danger d-lg-none ml-auto" type="submit">Cerrar sesión</button>
+                                </form>
                             </ul>
                         </div>
                         <!-- Botón para cerrar sesión en resoluciones large -->
-                        <button class="btn btn-outline-danger d-none d-lg-inline-block" type="submit">Cerrar sesión</button>
+                        <form action="CerrarSesion" method="post">
+                            <button class="btn btn-outline-danger d-none d-lg-inline-block" type="submit">Cerrar sesión</button>
+                        </form>
+
                     </nav>
                 </div>
             </div>                    

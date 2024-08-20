@@ -4,7 +4,15 @@
     Author     : Admin_sala
 --%>
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    // Verificar si la sesión existe
+    if (session == null || (session.getAttribute("ROL") == null && session.getAttribute("RUT") == null) ) {
+        response.sendRedirect("index.jsp");
+        return;
+    }
+
+%>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -26,7 +34,7 @@
                     <div class="col"> <span class="font-weight-normal">Sistema de Inventario integral</span> </div>
                 </div>
                 <div class="col-3 align-items-ent align-self-center fs-5 fw-bold">
-                    <div class="col"> <span class="font-weight-normal">Bienvenido: </span><span>Nombre Usuario</span> </div>
+                    <div class="col"> <span class="font-weight-normal">Bienvenido: </span><span><%= session.getAttribute("NOMBRE")%></span> </div>
                 </div>
             </div>
             <hr>

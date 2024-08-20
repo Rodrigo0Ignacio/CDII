@@ -10,7 +10,7 @@ import modelo.sql.interface_CRUD.CRUD;
 
 public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
-    public Usuario user;
+   // public Usuario user;
     private Clave clave;
 
     public CRUD_Usuario() throws Exception {
