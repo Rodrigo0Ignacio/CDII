@@ -18,7 +18,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="LIB/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="CSS/fooster.css" rel="stylesheet">
-        <link rel="shortcut icon" href="IMG/logo.ico" />
+         <!-- incluir encabezado -->
+        <%@ include file="JSP_detalles/logo.jsp" %>
         <title>Sistema de gestion - Login</title>
 
     </head>
@@ -65,13 +66,8 @@
 
             </div>
         </div>
-        <footer class="bg-body-tertiary text-center text-lg-start">
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.05);">
-                © 2024 Copyright: <a class="text-body" href="https://www.liceojuandanteparraguez.cl/">Liceo Juan Dante Parraguez Arellano</a>
-            </div>
-            <!-- Copyright -->
-        </footer>
+        <!<!-- pie de pagina -->
+        <%@ include file="JSP_detalles/pie_de_pagina.jsp" %>
         <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
     </body>
 </html>

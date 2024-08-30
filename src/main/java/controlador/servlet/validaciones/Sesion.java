@@ -51,7 +51,6 @@ public class Sesion extends HttpServlet {
                         request.getSession().setAttribute("NOMBRE", e.getNombres());
                         request.getSession().setAttribute("ROL", String.valueOf(e.getRol()));
                         
-                    
                     }
                     
                    // System.out.println("Sesion seteada: " + session.getAttribute("RUT") + ", " + session.getAttribute("NOMBRE") + ", " + session.getAttribute("ROL"));
