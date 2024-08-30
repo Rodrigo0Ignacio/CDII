@@ -1,6 +1,5 @@
 <%-- 
-    Document   : index
-    Created on : 08-04-2024, 3:53:02 p. m.
+
     Author     : Rodrigo Ignacio Farias
 --%>
 
