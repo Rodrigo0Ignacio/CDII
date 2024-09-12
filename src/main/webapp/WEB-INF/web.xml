@@ -25,6 +25,14 @@
         <servlet-name>CerrarSesion</servlet-name>
         <servlet-class>controlador.servlet.validaciones.CerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Registro_Usuario</servlet-name>
+        <servlet-class>controlador.servlet.usuario.Registro_Usuario</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Matricular</servlet-name>
+        <servlet-class>controlador.servlet.matricula.Matricular</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>datosInventario</servlet-name>
         <url-pattern>/datosInventario</url-pattern>
@@ -44,6 +52,14 @@
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Registro_Usuario</servlet-name>
+        <url-pattern>/Registro_Usuario</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Matricular</servlet-name>
+        <url-pattern>/Matricular</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>90</session-timeout>

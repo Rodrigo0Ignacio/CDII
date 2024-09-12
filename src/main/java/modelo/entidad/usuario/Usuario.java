@@ -6,21 +6,38 @@ public class Usuario {
 
     private int id_usuario;
     private String rut_usuario;
-    private String nombres;
+    private String primerNombre;
+    private String segundoNombre;
     private String paterno;
     private String materno;
     private String email;
+    private boolean cambiarpassword;
     private Date fechaCreacion;
     private String Password;
     private int rol;
 
-    public Usuario(int id_usuario, String rut_usuario, String nombres, String paterno, String materno, String email, Date fechaCreacion, String Password, int rol) {
+    public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email,boolean cambiarPassword, Date fechaCreacion, String Password, int rol) {
         this.id_usuario = id_usuario;
         this.rut_usuario = rut_usuario;
-        this.nombres = nombres;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
         this.paterno = paterno;
         this.materno = materno;
         this.email = email;
+        this.cambiarpassword = cambiarPassword;
+        this.fechaCreacion = fechaCreacion;
+        this.Password = Password;
+        this.rol = rol;
+    }
+    
+        public Usuario(String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email,boolean cambiarPassword, Date fechaCreacion, String Password, int rol) {
+        this.rut_usuario = rut_usuario;
+        this.primerNombre = primerNombre;
+        this.segundoNombre = segundoNombre;
+        this.paterno = paterno;
+        this.materno = materno;
+        this.email = email;
+        this.cambiarpassword = cambiarPassword;
         this.fechaCreacion = fechaCreacion;
         this.Password = Password;
         this.rol = rol;
@@ -38,10 +55,11 @@ public class Usuario {
         this.Password = Password;
     }
 
-    public Usuario(int roles, String rut, String nombre) {
+    public Usuario(int roles, String rut, String primerNombre, String password ) {
         this.rut_usuario = rut;
-        this.nombres = nombre;
+        this.primerNombre = primerNombre;
         this.rol = roles;
+        this.Password = password;
        
     }
 
@@ -61,12 +79,20 @@ public class Usuario {
         this.rut_usuario = rut_usuario;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getPrimerNombre() {
+        return primerNombre;
     }
 
-    public void setNombres(String nombres) {
-        this.nombres = nombres;
+    public void setPrimerNombre(String primerNombre) {
+        this.primerNombre = primerNombre;
+    }
+
+    public String getSegundoNombre() {
+        return segundoNombre;
+    }
+
+    public void setSegundoNombre(String segundoNombre) {
+        this.segundoNombre = segundoNombre;
     }
 
     public String getPaterno() {
@@ -93,6 +119,14 @@ public class Usuario {
         this.email = email;
     }
 
+    public boolean isCambiarpassword() {
+        return cambiarpassword;
+    }
+
+    public void setCambiarpassword(boolean cambiarpassword) {
+        this.cambiarpassword = cambiarpassword;
+    }
+
     public Date getFechaCreacion() {
         return fechaCreacion;
     }
@@ -116,5 +150,9 @@ public class Usuario {
     public void setRol(int rol) {
         this.rol = rol;
     }
+    
+    
+
+
 
 }

@@ -20,22 +20,22 @@
         <%@ include file="JSP_detalles/encabezado.jsp" %>
         <div class="container">
             <br>
-            <form class="form col col-lg-8" action="" method="post" id="form_registro_usuario">
+            <form class="form col col-lg-8" action="Registro_Usuario" method="post" id="form_registro_usuario">
                 <h2>Registrar Usuario</h2>
                 <br>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">RUT <span class="text-danger">*</span></label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="true">
+                    <input type="text" name="rut" class="form-control" id="input_rut" aria-describedby="emailHelp" placeholder="Ingrese RUT sin puntos" required="true">
                 </div>
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
                             <label for="exampleInputEmail1" class="form-label">Primer Nombre <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="true">
+                            <input type="text" name="primerNombre" class="form-control" id="primerNombre" aria-describedby="emailHelp" required="true">
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1" class="form-label">Segundo Nombre <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="true">
+                            <input type="text" name="segundoNombre" class="form-control" id="segundoNombre" aria-describedby="emailHelp" required="true">
                         </div>
                     </div>
                 </div>
@@ -43,49 +43,51 @@
                     <div class="row">
                         <div class="col">
                             <label for="exampleInputEmail1" class="form-label">Apellido Paterno <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="true">
+                            <input type="text" name="apePaterno" class="form-control" id="apePaterno" aria-describedby="emailHelp" required="true">
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1" class="form-label">Apellido Materno <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="true">
+                            <input type="text" name="apeMaterno" class="form-control" id="apeMaterno" aria-describedby="emailHelp" required="true">
                         </div>
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email <span class="text-danger">*</span></label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required="true">
+                    <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" required="true">
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword5" class="form-label">Contraseña <span class="text-danger">*</span></label>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" required="true">
+                    <input type="password" name="password1" id="password1" class="form-control" aria-describedby="passwordHelpBlock" required="true">
                     <div id="passwordHelpBlock" class="form-text">
                         La contraseña debe ser con una longitud maxima de 10 caracterestes.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword5" class="form-label">Repetir contraseña <span class="text-danger">*</span></label>
-                    <input type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" required="true">
+                    <input type="password" name="password2" id="password2" class="form-control" aria-describedby="passwordHelpBlock" required="true">
                 </div>
                 <div class="mb-3">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" class="form-check-input" id="cleck_mostrarpass">
                     <label class="form-check-label" for="exampleCheck1">Mostrar contraseña</label>
                 </div>
                 <div class="mb-3">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" name="cleck_cambiarPass" class="form-check-input" id="cleck_cambiarPass">
                     <label class="form-check-label" for="exampleCheck1">Pedir cambiar contraseña</label>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label"><span class="text-nowrap">Seleccione el ROL</span><span class="text-danger">*</span></label>
-                    <select class="form-select" aria-label="Default select example" required="true">
+                    <select name="rol" id="rol" class="form-select" aria-label="Default select example" required="true">
                         <option selected>Seleccione el ROL</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Administrador</option>
+                        <option value="2">Digitalizador</option>
+                        <option value="3">Usuario Estandar</option>
+                        <option value="4">Lector</option>
+                        <option value="5">Matriculador</option>
                     </select>
                 </div>
                 <div class="mb-5">
                     <br>
-                     <button type="submit" class="btn btn-primary">Registrar Usuario</button>
+                     <button name="registrar" id="registrar" type="submit" class="btn btn-primary">Registrar Usuario</button>
                 </div>
             </form>
 

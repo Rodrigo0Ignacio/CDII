@@ -19,36 +19,43 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
     @Override
     public void crear(Usuario objeto) {
-
-        query = "INSERT INTO usuario (id_usuario, rut_usuario, nombres, paterno, materno, email, fechaCreacion, password, id_rol)"
-                + " VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?);";
-
         try {
+            query = "INSERT INTO usuario (rut_usuario, primerNombre, segundoNombre, paterno, materno, email, cambiarPassword, fechaCreacion, password, id_rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            
             ps = conectar().prepareStatement(query);
 
-            //  ps.setInt(1, objeto.getId_usuario());
-            ps.setString(2, objeto.getRut_usuario());
-            ps.setString(3, objeto.getNombres());
+            // Configurar los parámetros del PreparedStatement
+            ps.setString(1, objeto.getRut_usuario());
+            ps.setString(2, objeto.getPrimerNombre());
+            ps.setString(3, objeto.getSegundoNombre());
             ps.setString(4, objeto.getPaterno());
             ps.setString(5, objeto.getMaterno());
             ps.setString(6, objeto.getEmail());
-            ps.setDate(7, obtenerFechaActual());
+            ps.setBoolean(7, objeto.isCambiarpassword());
+            ps.setDate(8, objeto.getFechaCreacion());
+            
+            // Encriptar la contraseña y establecerla en el PreparedStatement
             try {
-                /*INSERTA EL VALOR CIFRADO EN LA BASE DE DATOS*/
-                ps.setString(8, clave.cifrar(objeto.getPassword()));
-
+                String passwordCifrado = clave.cifrar(objeto.getPassword());
+                ps.setString(9, passwordCifrado);
             } catch (Exception ex) {
-                Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, "Error al cifrar la contraseña", ex);
+                throw new RuntimeException("Error al cifrar la contraseña", ex);
             }
-            ps.setInt(9, objeto.getRol());
 
+            ps.setInt(10, objeto.getRol());
+
+            // Ejecutar la actualización
+            ps.executeUpdate();
+
+            // Cerrar recursos
             ps.close();
-            Desconectar();
+            ps.close();
 
         } catch (SQLException e) {
-
+            System.err.println("Error al insertar el usuario: " + e.getMessage());
+            e.printStackTrace();
         }
-
     }
 
     @Override
@@ -62,11 +69,18 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
             while (rs.next()) {
                 lista.add(
-                        new Usuario(rs.getInt(1), rs.getString(2),
-                                rs.getString(3), rs.getString(4),
-                                rs.getString(5), rs.getString(6),
-                                rs.getDate(7), rs.getString(8),
-                                rs.getInt(9)));
+                        new Usuario(
+                        rs.getInt(1),       // id_usuario
+                        rs.getString(2),    // rut_usuario
+                        rs.getString(3),    // primerNombre
+                        rs.getString(4),    // segundoNombre
+                        rs.getString(5),    // paterno
+                        rs.getString(6),    // materno
+                        rs.getString(7),    // email
+                        rs.getBoolean(8),   // cambiarPassword
+                        rs.getDate(9),      // fechaCreacion
+                        rs.getString(10),   // Password
+                        rs.getInt(11)));       // rol
             }
             rs.close();
             ps.close();
@@ -83,17 +97,18 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
     @Override
     public void actualizar(Usuario objeto, String idUsuario) {
-        String query = "UPDATE usuario SET rut_usuario = ?, nombres = ?, paterno = ?, materno = ?, email = ?, password = ?,"
+         query = "UPDATE usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
                 + " id_rol = ? WHERE id_usuario = ?";
 
         try {
             ps = conectar().prepareStatement(query);
             // Configurar los parámetros del PreparedStatement
             ps.setString(1, objeto.getRut_usuario());
-            ps.setString(2, objeto.getNombres());
-            ps.setString(3, objeto.getPaterno());
-            ps.setString(4, objeto.getMaterno());
-            ps.setString(5, objeto.getEmail());
+            ps.setString(2, objeto.getPrimerNombre());
+            ps.setString(3, objeto.getSegundoNombre());
+            ps.setString(4, objeto.getPaterno());
+            ps.setString(5, objeto.getMaterno());
+            ps.setString(6, objeto.getEmail());
 
             // Cifrar la contraseña antes de almacenarla
             try {
@@ -126,11 +141,11 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
     public void eliminar(String i) {
 
         // SQL para eliminar un registro basado en el ID
-        String sql = "DELETE FROM Usuario WHERE rut_usuario = ?";
+        query = "DELETE FROM Usuario WHERE rut_usuario = ?";
 
         try {
 
-            ps = conectar().prepareStatement(sql);
+            ps = conectar().prepareStatement(query);
 
             // Establecer el parámetro ID
             ps.setString(2, i);
