@@ -26,6 +26,8 @@ SET time_zone = "+00:00";
 --
 -- Estructura de tabla para la tabla `alumno`
 --
+create database cdii;
+use cdii;
 
 CREATE TABLE `alumno` (
   `matricula` int(11) NOT NULL,

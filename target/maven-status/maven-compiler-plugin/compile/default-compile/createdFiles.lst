@@ -1,9 +1,6 @@
-controlador\servlet\usuario\Registro_Usuario.class
-modelo\sql\CRUD_Matricula.class
 modelo\sql\CRUD_Usuario.class
 cl\liceojuandanteparraguez\sistema_de_gestion\resources\JakartaEE10Resource.class
 modelo\sql\CRUD_CreaTabla.class
-controlador\servlet\matricula\Matricular.class
 modelo\entidad\usuario\Modulo.class
 controlador\servlet\procesos\BuscarInventario.class
 controlador\servlet\validaciones\Sesion.class
@@ -23,5 +20,5 @@ controlador\servlet\procesos\Creacion_Inventario.class
 modelo\cifrado\AESEncryption.class
 modelo\cifrado\Clave.class
 modelo\entidad\inventario\TablaCreada.class
-modelo\entidad\matricula\Matricula.class
 modelo\sql\SQL_Conexion.class
+controlador\servlet\usuario\Servlet_Usuario.class

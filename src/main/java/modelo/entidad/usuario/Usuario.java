@@ -11,12 +11,12 @@ public class Usuario {
     private String paterno;
     private String materno;
     private String email;
-    private boolean cambiarpassword;
     private Date fechaCreacion;
     private String Password;
+    private Boolean cambioPass;
     private int rol;
 
-    public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email,boolean cambiarPassword, Date fechaCreacion, String Password, int rol) {
+    public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email, Date fechaCreacion, String Password, Boolean cambioPass, int rol) {
         this.id_usuario = id_usuario;
         this.rut_usuario = rut_usuario;
         this.primerNombre = primerNombre;
@@ -24,22 +24,22 @@ public class Usuario {
         this.paterno = paterno;
         this.materno = materno;
         this.email = email;
-        this.cambiarpassword = cambiarPassword;
         this.fechaCreacion = fechaCreacion;
         this.Password = Password;
+        this.cambioPass = cambioPass;
         this.rol = rol;
     }
     
-        public Usuario(String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email,boolean cambiarPassword, Date fechaCreacion, String Password, int rol) {
+        public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email, String Password, Boolean cambioPass, int rol) {
+        this.id_usuario = id_usuario;
         this.rut_usuario = rut_usuario;
         this.primerNombre = primerNombre;
         this.segundoNombre = segundoNombre;
         this.paterno = paterno;
         this.materno = materno;
         this.email = email;
-        this.cambiarpassword = cambiarPassword;
-        this.fechaCreacion = fechaCreacion;
         this.Password = Password;
+        this.cambioPass = cambioPass;
         this.rol = rol;
     }
 
@@ -55,12 +55,13 @@ public class Usuario {
         this.Password = Password;
     }
 
-    public Usuario(int roles, String rut, String primerNombre, String password ) {
-        this.rut_usuario = rut;
+    /*CONSTRUCTOR PARA OBTENER DATOS DE LA SESION DEL USUARIO*/
+    public Usuario(String rut_usuario, String primerNombre, String segundoNombre,String password, int rol) {
+        this.rut_usuario = rut_usuario;
         this.primerNombre = primerNombre;
-        this.rol = roles;
+        this.segundoNombre = segundoNombre;
         this.Password = password;
-       
+        this.rol = rol;
     }
 
     public int getId_usuario() {
@@ -95,6 +96,14 @@ public class Usuario {
         this.segundoNombre = segundoNombre;
     }
 
+    public Boolean getCambioPass() {
+        return cambioPass;
+    }
+
+    public void setCambioPass(Boolean cambioPass) {
+        this.cambioPass = cambioPass;
+    }
+
     public String getPaterno() {
         return paterno;
     }
@@ -117,14 +126,6 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public boolean isCambiarpassword() {
-        return cambiarpassword;
-    }
-
-    public void setCambiarpassword(boolean cambiarpassword) {
-        this.cambiarpassword = cambiarpassword;
     }
 
     public Date getFechaCreacion() {
@@ -150,9 +151,5 @@ public class Usuario {
     public void setRol(int rol) {
         this.rol = rol;
     }
-    
-    
-
-
 
 }

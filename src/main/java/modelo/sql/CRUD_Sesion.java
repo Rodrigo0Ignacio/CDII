@@ -3,7 +3,6 @@ package modelo.sql;
 
 import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
-import modelo.cifrado.Clave;
 import modelo.entidad.usuario.Usuario;
 
 public class CRUD_Sesion extends CRUD_Usuario{
@@ -20,31 +19,31 @@ public class CRUD_Sesion extends CRUD_Usuario{
     
     public ArrayList<Usuario> obtenerDatos(){
         ArrayList<Usuario> listaSesion = new ArrayList();
-        
                 
-        query = "SELECT rut_usuario AS 'rut', id_rol AS 'rol', primerNombre AS 'nombre', password AS 'pass' FROM usuario WHERE rut_usuario = ? OR password = ?;";
+        query = "SELECT rut_usuario AS 'rut', id_rol AS 'rol', primerNombre, segundoNombre, password"
+                + " FROM usuario WHERE rut_usuario = ? OR password = ?;";
         
         try {
-            Clave clave = new Clave();
             ps = conectar().prepareStatement(query);
             
             ps.setString(1, usuario.getRut_usuario());
             ps.setString(2, usuario.getPassword());
             rs = ps.executeQuery();
-           
             
             while(rs.next()){
                 listaSesion.add(
-                        new Usuario(rs.getInt("rol"),rs.getString("rut"),rs.getString("nombre"), rs.getString("pass")));
-
-                
+                        new Usuario(rs.getString("rut"),
+                                rs.getString("primerNombre"),
+                                rs.getString("segundoNombre"),
+                                rs.getString("password"),
+                                rs.getInt("rol")));     
             }          
             rs.close();
             ps.close();
             Desconectar();
             
         } catch (Exception e) {
-            System.out.println("Error al obtener los datos de la sesion");
+            System.out.println("clase CRUD_Sesion: Error al obtener los datos de la sesion");
         }
         
         return listaSesion;

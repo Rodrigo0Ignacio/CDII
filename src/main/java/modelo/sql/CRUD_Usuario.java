@@ -10,7 +10,7 @@ import modelo.sql.interface_CRUD.CRUD;
 
 public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
-   // public Usuario user;
+    // public Usuario user;
     private Clave clave;
 
     public CRUD_Usuario() throws Exception {
@@ -19,48 +19,41 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
     @Override
     public void crear(Usuario objeto) {
+
+        query = "INSERT INTO usuario (id_usuario, rut_usuario, primerNombre,"
+                + " segundoNombre, paterno, materno, email, fechaCreacion,"
+                + " password, cambioPassword, id_rol)"
+                + " VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+
         try {
-            query = "INSERT INTO usuario (rut_usuario, primerNombre, segundoNombre, paterno, materno, email, cambiarPassword, fechaCreacion, password, id_rol) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
-            
             ps = conectar().prepareStatement(query);
 
-            // Configurar los parámetros del PreparedStatement
+            // Empieza desde el índice 1
             ps.setString(1, objeto.getRut_usuario());
             ps.setString(2, objeto.getPrimerNombre());
             ps.setString(3, objeto.getSegundoNombre());
             ps.setString(4, objeto.getPaterno());
             ps.setString(5, objeto.getMaterno());
             ps.setString(6, objeto.getEmail());
-            ps.setBoolean(7, objeto.isCambiarpassword());
-            ps.setDate(8, objeto.getFechaCreacion());
-            
-            // Encriptar la contraseña y establecerla en el PreparedStatement
-            try {
-                String passwordCifrado = clave.cifrar(objeto.getPassword());
-                ps.setString(9, passwordCifrado);
-            } catch (Exception ex) {
-                Logger.getLogger(Usuario.class.getName()).log(Level.SEVERE, "Error al cifrar la contraseña", ex);
-                throw new RuntimeException("Error al cifrar la contraseña", ex);
-            }
-
+            ps.setDate(7, obtenerFechaActual());
+            ps.setString(8,objeto.getPassword());
+            ps.setBoolean(9, objeto.getCambioPass());
             ps.setInt(10, objeto.getRol());
 
-            // Ejecutar la actualización
+            // Ejecutar la consulta
             ps.executeUpdate();
 
-            // Cerrar recursos
             ps.close();
-            ps.close();
+            Desconectar();
 
         } catch (SQLException e) {
-            System.err.println("Error al insertar el usuario: " + e.getMessage());
             e.printStackTrace();
         }
     }
 
     @Override
     public ArrayList<Usuario> leer() {
-        query = "SELECT * FROM Usuario ";
+        query = "SELECT * FROM Usuario";
         lista = new ArrayList<Usuario>();
 
         try {
@@ -69,36 +62,28 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
             while (rs.next()) {
                 lista.add(
-                        new Usuario(
-                        rs.getInt(1),       // id_usuario
-                        rs.getString(2),    // rut_usuario
-                        rs.getString(3),    // primerNombre
-                        rs.getString(4),    // segundoNombre
-                        rs.getString(5),    // paterno
-                        rs.getString(6),    // materno
-                        rs.getString(7),    // email
-                        rs.getBoolean(8),   // cambiarPassword
-                        rs.getDate(9),      // fechaCreacion
-                        rs.getString(10),   // Password
-                        rs.getInt(11)));       // rol
+                        new Usuario(rs.getInt(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
+                                rs.getString(5), rs.getString(6),
+                                rs.getString(7), rs.getDate(8),
+                                rs.getString(9), rs.getBoolean(10),
+                                rs.getInt(11)));
             }
             rs.close();
             ps.close();
             Desconectar();
 
         } catch (SQLException e) {
-
             e.printStackTrace();
         }
 
         return lista;
-
     }
 
     @Override
     public void actualizar(Usuario objeto, String idUsuario) {
-         query = "UPDATE usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
-                + " id_rol = ? WHERE id_usuario = ?";
+        String query = "UPDATE usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
+                + " cambioPass = ?, id_rol = ? WHERE id_usuario = ?";
 
         try {
             ps = conectar().prepareStatement(query);
@@ -113,14 +98,15 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
             // Cifrar la contraseña antes de almacenarla
             try {
                 String passwordCifrada = clave.cifrar(objeto.getPassword());
-                ps.setString(6, passwordCifrada);
+                ps.setString(7, passwordCifrada);
             } catch (Exception ex) {
                 Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, "Error al cifrar la contraseña", ex);
                 return; // Salir del método si ocurre un error en el cifrado
             }
 
-            ps.setInt(7, objeto.getRol());
-            ps.setString(8, idUsuario); // Usar el ID proporcionado para actualizar el registro
+            ps.setBoolean(8, objeto.getCambioPass());
+            ps.setInt(9, objeto.getRol());
+            ps.setString(10, idUsuario); // Usar el ID proporcionado para actualizar el registro
 
             // Ejecutar la actualización
             int rowsAffected = ps.executeUpdate();
@@ -141,11 +127,11 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
     public void eliminar(String i) {
 
         // SQL para eliminar un registro basado en el ID
-        query = "DELETE FROM Usuario WHERE rut_usuario = ?";
+        String sql = "DELETE FROM Usuario WHERE rut_usuario = ?";
 
         try {
 
-            ps = conectar().prepareStatement(query);
+            ps = conectar().prepareStatement(sql);
 
             // Establecer el parámetro ID
             ps.setString(2, i);
@@ -163,5 +149,4 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
         }
 
     }
-
 }
