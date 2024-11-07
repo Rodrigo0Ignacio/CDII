@@ -13,10 +13,10 @@ public class Usuario {
     private String email;
     private Date fechaCreacion;
     private String Password;
-    private Boolean cambioPass;
+    private boolean cambioPass;
     private int rol;
 
-    public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email, Date fechaCreacion, String Password, Boolean cambioPass, int rol) {
+    public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email, Date fechaCreacion, String Password, boolean cambioPass, int rol) {
         this.id_usuario = id_usuario;
         this.rut_usuario = rut_usuario;
         this.primerNombre = primerNombre;
@@ -30,7 +30,7 @@ public class Usuario {
         this.rol = rol;
     }
     
-        public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email, String Password, Boolean cambioPass, int rol) {
+        public Usuario(int id_usuario, String rut_usuario, String primerNombre, String segundoNombre, String paterno, String materno, String email, String Password, boolean cambioPass, int rol) {
         this.id_usuario = id_usuario;
         this.rut_usuario = rut_usuario;
         this.primerNombre = primerNombre;
@@ -96,11 +96,11 @@ public class Usuario {
         this.segundoNombre = segundoNombre;
     }
 
-    public Boolean getCambioPass() {
+    public boolean getCambioPass() {
         return cambioPass;
     }
 
-    public void setCambioPass(Boolean cambioPass) {
+    public void setCambioPass(boolean cambioPass) {
         this.cambioPass = cambioPass;
     }
 

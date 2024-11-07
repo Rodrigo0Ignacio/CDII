@@ -47,8 +47,8 @@
                     Matricula
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="">Matricular</a>
-                    <a class="dropdown-item" href="">Editar Matricula</a>
+                    <a class="dropdown-item" href="matricular.jsp">Matricular</a>
+                    <a class="dropdown-item" href="editar_matricula.jsp">Editar Matricula</a>
                 </div>
             </li>
             <li class="nav-item dropdown">

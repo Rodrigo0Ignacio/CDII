@@ -1,7 +1,6 @@
 package controlador.servlet.usuario;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -36,7 +35,6 @@ public class Servlet_Usuario extends HttpServlet {
             throws ServletException, IOException {
         processRequest(request, response);
 
-        //REGISTRAR
         String rut = request.getParameter("rut");
         String primerNombre = request.getParameter("primerNombre");
         String segundoNombre = request.getParameter("segundoNombre");
@@ -45,89 +43,83 @@ public class Servlet_Usuario extends HttpServlet {
         String mail = request.getParameter("email");
         String pass1 = request.getParameter("pass1");
         String pass2 = request.getParameter("pass2");
-        String mostrarContasena = request.getParameter("mostrarPassword");
-        String pedirCambiarContrasena = request.getParameter("pedirPassword");
+        Boolean mostrarContrasena = request.getParameter("pedirPassword") != null;
         String rol = request.getParameter("rol");
-        CRUD_Usuario crud_user = null;
-        Usuario usuario;
-        final String msj = "Usuario Registrado";
 
-        ArrayList listaErrores = new ArrayList();
+        ArrayList<String> listaErrores = new ArrayList<>();
 
+        // Validación de campos
         if (rut == null || rut.isEmpty() || rut.length() < 10) {
             listaErrores.add("Ingrese un RUT correcto.");
         }
         if (primerNombre == null || primerNombre.isEmpty()) {
-            listaErrores.add("Ingrese Primer Nombre");
-
+            listaErrores.add("Ingrese Primer Nombre.");
         }
         if (segundoNombre == null || segundoNombre.isEmpty()) {
-            listaErrores.add("Ingrese Segundo Nombre");
-
+            listaErrores.add("Ingrese Segundo Nombre.");
         }
         if (paterno == null || paterno.isEmpty()) {
-            listaErrores.add("Ingrese Apellido Paterno");
-
+            listaErrores.add("Ingrese Apellido Paterno.");
         }
         if (materno == null || materno.isEmpty()) {
-            listaErrores.add("Ingrese Apellido Materno");
-
+            listaErrores.add("Ingrese Apellido Materno.");
         }
         if (mail == null || mail.isEmpty() || !mail.matches("^[\\w.%+-]+@[\\w.-]+\\.[a-zA-Z]{2,6}$")) {
-            listaErrores.add("Ingrese Email");
-
+            listaErrores.add("Ingrese un Email válido.");
         }
         if (pass1 == null || pass1.isEmpty()) {
-            listaErrores.add("Ingrese Contraseña");
-
+            listaErrores.add("Ingrese Contraseña.");
         }
         if (pass2 == null || pass2.isEmpty()) {
-            listaErrores.add("Ingrese Contraseña");
-
+            listaErrores.add("Confirme la Contraseña.");
         }
-        if (pass1.length() > 8 && pass2.length() > 8) {
-            listaErrores.add("El largo debe ser mayor a 8 caracteres");
+        if (pass1.length() < 8 || pass2.length() < 8) {
+            listaErrores.add("El largo de la contraseña debe ser mayor a 8 caracteres.");
         }
         if (!pass1.equals(pass2)) {
-            listaErrores.add("Las contraseñas no son iguales");
+            listaErrores.add("Las contraseñas no son iguales.");
         }
-        if (rol == null) {
-            listaErrores.add("Ingrese un rol.");
+        if (rol == null || rol.isEmpty() || rol.equalsIgnoreCase("Seleccione un rol")) {
+            listaErrores.add("Seleccione un rol válido.");
         }
 
-        if (listaErrores.size() > 0) {
-
+        // Verificar si hay errores
+        if (listaErrores.isEmpty()) {
             try {
-                crud_user = new CRUD_Usuario();
-
-                usuario = new Usuario(0,
+                CRUD_Usuario crud_user = new CRUD_Usuario();
+                Usuario usuario = new Usuario(
+                        0,
                         rut,
                         primerNombre,
                         segundoNombre,
                         paterno,
                         materno,
-                        mail, // email
+                        mail,
+                        crud_user.obtenerFechaActual(),
                         pass1,
-                        Boolean.parseBoolean(pedirCambiarContrasena), // cambiopassword
+                        mostrarContrasena,
                         Integer.parseInt(rol)
                 );
+
                 crud_user.crear(usuario);
-                if (usuario != null) {
+                System.out.println("servlet_usuario: usuario registrado!");
 
-                    System.out.println("servlet_usuario: usuario registrado!");
-
-                    request.setAttribute("mensaje", msj);
-                    request.getRequestDispatcher("registrar_usuario.jsp").forward(request, response);
-                }
+                // Mensaje de éxito
+                request.setAttribute("mensaje", "Usuario Registrado");
+                request.getRequestDispatcher("registrar_usuario.jsp").forward(request, response);
 
             } catch (Exception e) {
-
+                // Manejo de excepciones
+                listaErrores.add("Error al registrar el usuario: " + e.getMessage());
+                e.printStackTrace();
             }
-        } else {
+        }
+
+        // Redirigir a la vista con errores si los hay
+        if (!listaErrores.isEmpty()) {
             request.setAttribute("errores", listaErrores);
             request.getRequestDispatcher("registrar_usuario.jsp").forward(request, response);
         }
-
     }
 
     @Override

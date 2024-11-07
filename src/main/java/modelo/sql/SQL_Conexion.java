@@ -21,7 +21,7 @@ import java.util.logging.Logger;
 public class SQL_Conexion {
 
     private static final String BD = "cdii";
-    private static final String URL = "jdbc:mysql://localhost:3306/" + BD;
+    private static final String URL = "jdbc:mysql://192.168.50.29:3306/" + BD;
     private static final String USUARIO = "root";
     private static final String PASSWORD = "uix86.dll";
     private static final String DRIVER = "com.mysql.cj.jdbc.Driver";

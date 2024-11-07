@@ -71,8 +71,8 @@
                     <label name="mostrarPassword" class="form-check-label" for="exampleCheck1">Mostrar contraseña</label>
                 </div>
                 <div class="mb-3">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                    <label name="pedirPassword" class="form-check-label" for="exampleCheck1">Pedir cambiar contraseña</label>
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1" name="pedirPassword">
+                    <label class="form-check-label" for="exampleCheck1">Pedir cambiar contraseña</label>
                 </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label"><span class="text-nowrap">Seleccione el ROL</span><span class="text-danger">*</span></label>
@@ -95,11 +95,10 @@
             <div class="alert alert-success" role="alert" id="alerta-exito">
                 <span><%= request.getAttribute("mensaje")%></span>
                 <script>
-            alert("<%= request.getAttribute("mensaje")%>");
+                    alert("<%= request.getAttribute("mensaje")%>");
                 </script>
             </div>
             <% } %>
-// por terminar
             <%
                 // Verificamos si el atributo "errores" no es nulo y es de tipo ArrayList
                 if (request.getAttribute("errores") != null && request.getAttribute("errores") instanceof java.util.ArrayList) {
