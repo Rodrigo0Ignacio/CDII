@@ -8,8 +8,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.Iterator;
 import modelo.entidad.usuario.Usuario;
-import modelo.sql.CRUD_Sesion;
-import modelo.sql.CRUD_Usuario;
+import modelo.sql.usuario.CRUD_Sesion;
+import modelo.sql.usuario.CRUD_Usuario;
 import modelo.sql.interface_CRUD.CRUD;
 
 /**

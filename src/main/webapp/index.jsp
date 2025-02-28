@@ -1,7 +1,4 @@
-<%-- 
 
-    Author     : Rodrigo Ignacio Farias
---%>
 
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
@@ -15,8 +12,9 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="LIB/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+        
         <link href="CSS/fooster.css" rel="stylesheet">
+        <%@ include file="JSP_detalles/CDN.jsp" %>
          <!-- incluir encabezado -->
         <%@ include file="JSP_detalles/logo.jsp" %>
         <title>Sistema de gestion - Login</title>
@@ -56,6 +54,8 @@
                         <button type="submit" class="btn btn-primary">Ingresar</button> 
                     </form>
                 </div>
+
+                <!-- CODIGO SOLO SIRVE PARA MOSTRAR MENSAJE -->
                 <% if (request.getAttribute("valida") != null && (boolean)request.getAttribute("valida") != true) { %>
                 <div class="alert alert-danger" role="alert" id="alerta">
                     <span>Usuario no encontrado</span>
@@ -65,8 +65,8 @@
 
             </div>
         </div>
-        <!<!-- pie de pagina -->
+        <!-- pie de pagina -->
         <%@ include file="JSP_detalles/pie_de_pagina.jsp" %>
-        <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+
     </body>
 </html>

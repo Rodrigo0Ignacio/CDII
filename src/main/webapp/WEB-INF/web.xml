@@ -11,7 +11,7 @@
     </servlet>
     <servlet>
         <servlet-name>Sesion</servlet-name>
-        <servlet-class>controlador.servlet.validaciones.Sesion</servlet-class>
+        <servlet-class>controlador.servlet.usuario.Sesion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Creacion_Inventario</servlet-name>
@@ -23,7 +23,7 @@
     </servlet>
     <servlet>
         <servlet-name>CerrarSesion</servlet-name>
-        <servlet-class>controlador.servlet.validaciones.CerrarSesion</servlet-class>
+        <servlet-class>controlador.servlet.usuario.CerrarSesion</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>Servlet_Usuario</servlet-name>

@@ -12,7 +12,7 @@ import com.google.gson.JsonObject;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import modelo.sql.CRUD_CreaTabla;
+import modelo.sql.inventario.CRUD_CreaTabla;
 
 //@WebServlet("/Creacion_Inventario")
 public class Creacion_Inventario extends HttpServlet {

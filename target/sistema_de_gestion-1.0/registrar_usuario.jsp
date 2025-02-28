@@ -1,6 +1,6 @@
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="modelo.sql.CRUD_Usuario" %>
+<%@ page import="modelo.sql.usuario.CRUD_Usuario" %>
 <%@ include file="JSP_detalles/validacionSesion.jsp" %>
 
 <!DOCTYPE html>
@@ -8,7 +8,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="LIB/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+        <%@ include file="JSP_detalles/CDN.jsp" %>
         <link href="CSS/fooster.css" rel="stylesheet">
         <!-- incluir encabezado -->
         <%@ include file="JSP_detalles/logo.jsp" %>
@@ -57,17 +57,17 @@
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword5" class="form-label">Contraseña <span class="text-danger">*</span></label>
-                    <input name="pass1" type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" required="true">
+                    <input name="pass1" type="password" id="pass1" class="form-control" aria-describedby="passwordHelpBlock" required="true">
                     <div id="passwordHelpBlock" class="form-text">
                         La contraseña debe ser con una longitud maxima de 10 caracterestes.
                     </div>
                 </div>
                 <div class="mb-3">
                     <label for="inputPassword5" class="form-label">Repetir contraseña <span class="text-danger">*</span></label>
-                    <input name="pass2" type="password" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock" required="true">
+                    <input name="pass2" type="password" id="pass2" class="form-control" aria-describedby="passwordHelpBlock" required="true">
                 </div>
                 <div class="mb-3">
-                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <input type="checkbox" class="form-check-input" id="mostrar" onclick="mostrarContrasena()">
                     <label name="mostrarPassword" class="form-check-label" for="exampleCheck1">Mostrar contraseña</label>
                 </div>
                 <div class="mb-3">
@@ -123,13 +123,22 @@
 
         </div>
 
-
         <!<!-- pie de pagina -->
         <%@ include file="JSP_detalles/pie_de_pagina.jsp" %>
         <script src="JS/alerta.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script> 
-        <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
-        <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
+        
+          <script>
+                    function mostrarContrasena() {
+                        var pass1 = document.getElementById("pass1");
+                        var pass2 = document.getElementById("pass2");
+                        if (document.getElementById("mostrar").checked) {
+                            pass1.type = "text";
+                            pass2.type = "text";
+                        } else {
+                            pass1.type = "password";
+                            pass2.type = "password";
+                        }
+                    }
+                </script>
     </body>
 </html>

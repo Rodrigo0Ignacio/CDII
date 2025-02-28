@@ -1,7 +1,7 @@
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <%
-    
+    String rol = (String) session.getAttribute("ROL");
 
 %>
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -11,18 +11,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-            <!--
+
             <li class="nav-item active">
                 <a class="nav-link" href="#">Registros</a>
             </li>
-            -->
+            
            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Gestion de Usuario
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="registrar_usuario.jsp">Registrar</a>
-                    <a class="dropdown-item" href="editar_usuario.jsp">Editar</a>
+                    <a class="dropdown-item" href="registrar_usuario.jsp">Registrar Usuario</a>
+                    <a class="dropdown-item" href="editar_cuenta.jsp">Editar datos de cuenta</a>
+                    <a class="dropdown-item" href="buscar_usuario.jsp">Buscar Cuenta de usuario</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -42,6 +43,7 @@
                     <% /* Si hay inventarios, los mostramos aquí */ %>
                 </div>
             </li>
+            <!--
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Matricula
@@ -51,13 +53,22 @@
                     <a class="dropdown-item" href="editar_matricula.jsp">Editar Matricula</a>
                 </div>
             </li>
+            -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Informes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="">Matricula</a>
                     <a class="dropdown-item" href="">Inventario</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Requerimientos
+                </a>
+                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="ingreso_requerimiento.jsp">Ingresar solicitud</a>
+                    <a class="dropdown-item" href="estado_requerimiento.jsp">Estado de solicitud</a>
                 </div>
             </li>
             <!-- Botón para cerrar sesión -->
