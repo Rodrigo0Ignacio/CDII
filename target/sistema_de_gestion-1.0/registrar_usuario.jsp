@@ -2,6 +2,14 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="modelo.sql.usuario.CRUD_Usuario" %>
 <%@ include file="JSP_detalles/validacionSesion.jsp" %>
+<%
+    String jspName = request.getServletPath(); // Obtiene el nombre del archivo JSP
+
+    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1, jspName.length()).toUpperCase());
+    
+    System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
+
+%>
 
 <!DOCTYPE html>
 <html lang="es">

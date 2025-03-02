@@ -3,8 +3,15 @@
     Created on : 10-04-2024, 1:17:00 p. m.
     Author     : Admin_sala
 --%>
+<%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%
+    String jspName = request.getServletPath(); // Obtiene el nombre del archivo JSP
 
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1, jspName.length()).toUpperCase());
+    
+    System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
+
+%>
 <!DOCTYPE html>
 <html>
     <head>
