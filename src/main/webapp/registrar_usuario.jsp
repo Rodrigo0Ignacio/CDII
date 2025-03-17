@@ -86,11 +86,9 @@
                     <label for="exampleInputEmail1" class="form-label"><span class="text-nowrap">Seleccione el ROL</span><span class="text-danger">*</span></label>
                     <select name="rol" class="form-select" aria-label="Default select example" required="true">
                         <option selected>Seleccione el ROL</option>
-                        <option value="5">Administrador</option>
-                        <option value="6">Digitalizador</option>
-                        <option value="7">Usuario Estandar</option>
-                        <option value="9">Inspector</option>
-                        <option value="8">Lector</option>
+                        <option value="1">Docente</option>
+                        <option value="2">Administrador</option>
+                        <option value="3">Lector</option>
                     </select>
                 </div>
                 <div class="mb-5">

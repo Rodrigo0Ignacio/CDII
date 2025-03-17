@@ -32,7 +32,7 @@
                     <img src="IMG/logo.png" class="img-fluid rounded float-start" alt="logo" width="100" height="100">
                     <div class="col"> <span class="font-weight-normal"> Liceo Juan Dante Parraguez Arellano</span> </div>
                     <div class="col"> <span class="font-weight-normal">Sistema de Inventario integral</span> </div>
-                    <div class="col"> <span class="font-weight-normal">pagina home: <a href="Home.jsp">IR</a></span> </div>
+                    
                 </div>
             </div>
             <hr>

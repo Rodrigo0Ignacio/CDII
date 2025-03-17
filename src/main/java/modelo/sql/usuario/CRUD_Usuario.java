@@ -21,7 +21,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
     @Override
     public void crear(Usuario objeto) {
 
-        query = "INSERT INTO usuario (id_usuario, rut_usuario, primerNombre,"
+        query = "INSERT INTO Usuario (id_usuario, rut_usuario, primerNombre,"
                 + " segundoNombre, paterno, materno, email, fechaCreacion,"
                 + " password, cambioPassword, id_rol)"
                 + " VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -83,7 +83,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
     @Override
     public void actualizar(Usuario objeto, String idUsuario) {
-        String query = "UPDATE usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
+        String query = "UPDATE Usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
                 + " cambioPass = ?, id_rol = ? WHERE id_usuario = ?";
 
         try {

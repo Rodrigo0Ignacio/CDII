@@ -23,7 +23,7 @@ public class CRUD_Sesion extends CRUD_Usuario{
         Test_Conexion test = new Test_Conexion();
                 
         query = "SELECT rut_usuario AS 'rut', id_rol AS 'rol', primerNombre, segundoNombre, password"
-                + " FROM usuario WHERE rut_usuario = ? OR password = ?;";
+                + " FROM Usuario WHERE rut_usuario = ? OR password = ?;";
         
         try {
             ps = conectar().prepareStatement(query);

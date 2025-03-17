@@ -20,8 +20,8 @@ import java.util.logging.Logger;
  */
 public class SQL_Conexion {
 
-    static final String BD = "cdii";
-    static final String URL = "jdbc:mysql://192.168.1.48:3306/" + BD;
+    static final String BD = "CDII2";
+    static final String URL = "jdbc:mysql://192.168.1.100:3306/" + BD;
     public static final String USUARIO = "root";
     public static final String PASSWORD = "uix86.dll";
     public static final String DRIVER = "com.mysql.cj.jdbc.Driver";
