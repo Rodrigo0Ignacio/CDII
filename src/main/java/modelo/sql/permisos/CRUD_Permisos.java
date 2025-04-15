@@ -18,18 +18,18 @@ import modelo.sql.interface_CRUD.CRUD;
  *
  * @author rodri
  */
-public class CRUD_Permisos extends SQL_Conexion implements CRUD<Permisos>{
+public class CRUD_Permisos extends SQL_Conexion implements CRUD<Permisos> {
 
     @Override
     public void crear(Permisos objeto) {
-       query = "INSERT INTO `Permisos` (`id_permiso`, `id_rol`, `nombre_web`) VALUES (NULL, ?, ?)";
-      
+        query = "INSERT INTO `Permisos` (`id_permiso`, `id_rol`, `nombre_web`) VALUES (NULL, ?, ?)";
+
         try {
             ps = conectar().prepareStatement(query);
 
             // Ejecutar la consulta
             ps.setInt(1, objeto.getId_rol());
-             ps.setString(2, objeto.getNombre_web());
+            ps.setString(2, objeto.getNombre_web());
             ps.executeUpdate();
 
             ps.close();
@@ -42,7 +42,7 @@ public class CRUD_Permisos extends SQL_Conexion implements CRUD<Permisos>{
 
     @Override
     public ArrayList<Permisos> leer() {
-         query = "SELECT * FROM Permisos;";
+        query = "SELECT * FROM Permisos;";
         lista = new ArrayList<Permisos>();
 
         try {
@@ -73,7 +73,7 @@ public class CRUD_Permisos extends SQL_Conexion implements CRUD<Permisos>{
             ps.setInt(1, objeto.getId_rol());
             ps.setString(2, objeto.getNombre_web());
             ps.setString(3, idPermiso);
-            
+
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Actualización exitosa.");
@@ -94,7 +94,7 @@ public class CRUD_Permisos extends SQL_Conexion implements CRUD<Permisos>{
         try {
             ps = conectar().prepareStatement(query);
             ps.setString(1, idPermiso);
-            
+
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected > 0) {
                 System.out.println("Eliminación exitosa.");
@@ -107,15 +107,15 @@ public class CRUD_Permisos extends SQL_Conexion implements CRUD<Permisos>{
             Logger.getLogger(CRUD_Permisos.class.getName()).log(Level.SEVERE, "Error al eliminar el registro", e);
         }
     }
-    
-public List<String> obtenerPermisosporROL(String rol) {
+
+    public List<String> obtenerPermisos(String rut) {
         List<String> paginasPermitidas = new ArrayList<>();
 
         try {
-           
-            String query = "CALL ObtenerPermisosPorRol(?)";
+
+            String query = "CALL ObtenerPermisos(?)";
             ps = conectar().prepareStatement(query);
-            ps.setString(1, rol);
+            ps.setString(1, rut);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -129,5 +129,5 @@ public List<String> obtenerPermisosporROL(String rol) {
 
         return paginasPermitidas;
     }
-    
+
 }

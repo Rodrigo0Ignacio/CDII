@@ -1,19 +1,17 @@
-<%-- 
-    Document   : Inventario
-    Created on : 10-04-2024, 1:10:08 p. m.
-    Author     : Admin_sala
---%>
 
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="JSP_detalles/validacionSesion.jsp" %>
 <%
-    String jspName = request.getServletPath(); // Obtiene el nombre del archivo JSP
-
-    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1, jspName.length()).toUpperCase());
-    
+    String jspName = request.getServletPath();
+    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1).toUpperCase());
     System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
 
+    String rutsesion = (String) session.getAttribute("RUT");
+    String rolsesion = (String) session.getAttribute("ROL");
+  
+
+
 %>
+<%@ include file="JSP_detalles/validacionSesion.jsp" %>
 <!DOCTYPE html>
 <html lang="es">
     <head>
@@ -21,18 +19,18 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="CSS/fooster.css" rel="stylesheet">
         <%@ include file="JSP_detalles/CDN.jsp" %>
-         <!-- incluir encabezado -->
+        <!-- incluir encabezado -->
         <%@ include file="JSP_detalles/logo.jsp" %>
         <title>Sistema de gestion - Inventario</title>
 
     </head>
     <body class="p-3 m-0 border-0 bd-example m-0 border-0 bg-light">
         <script src="LIB/bootstrap-5.3.3-dist/js/bootstrap.min.js"></script>
-        
-         <!-- incluir encabezado -->
+
+        <!-- incluir encabezado -->
         <%@ include file="JSP_detalles/encabezado.jsp" %>
         <div class="container">
-            
+
             <div class="row">
                 <div class="col col-lg mt-3 border rounded">
                     <div class="col">
@@ -41,6 +39,7 @@
                             <div class="mb-3 col">
                                 <label for="inventoryName" class="form-label">Nombre inventario</label>
                                 <input type="text" class="form-control" id="inventoryName" aria-describedby="emailHelp">
+
                                 <div id="emailHelp" class="form-text">Ingresa el nombre del inventario</div>
                             </div>
                             <div class="mb-3border rounded">
@@ -74,8 +73,7 @@
             </div> 
         </div>
 
-            <!--FIN CUERPO-->
-        </div>
+        <!--FIN CUERPO-->
         <!<!-- pie de pagina -->
         <%@ include file="JSP_detalles/pie_de_pagina.jsp" %>
         <script src="JS/agregarEncabezado.js"></script>

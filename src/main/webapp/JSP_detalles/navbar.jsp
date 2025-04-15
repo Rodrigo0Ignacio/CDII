@@ -1,9 +1,54 @@
-<%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
+<%@page import="java.util.Set"%>
+<%@page import="java.util.HashSet"%>
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%> 
+<%@ page import="java.util.List" %>
+<%@ page import="modelo.sql.permisos.CRUD_Permisos" %>
 <%
-    String rol = (String) session.getAttribute("ROL");
+    String rut2 = (String) session.getAttribute("RUT");
+    List<String> listaPermisos = null;
+    System.out.println("RUT " + rut2);
+    ArrayList<String> lista = new ArrayList();
+    boolean[] permisosActivos;
 
+    if (rut2 != null) {
+        CRUD_Permisos permisos = new CRUD_Permisos();
+        listaPermisos = permisos.obtenerPermisos(rut2);
+
+        // Elimina duplicados de listaPermisos usando un Set
+        Set<String> permisosSet = new HashSet<>(listaPermisos);
+        listaPermisos = new ArrayList<>(permisosSet);
+
+        // Lista de permisos que se van a verificar
+        lista.add("REGISTRAR_USUARIO.JSP"); // index 0
+        lista.add("EDITAR_CUENTA.JSP");     // index 1
+        lista.add("BUSCAR_USUARIO.JSP");    // index 2
+        lista.add("CREAR_INVENTARIO.JSP");  // index 3
+        lista.add("BUSCAR_INVENTARIO.JSP"); // index 4
+        lista.add("INVENTARIO_DINAMICO.JSP");                    // index 5
+        lista.add("INGRESO_REQUERIMIENTO.JSP"); // index 6
+        lista.add("ESTADO_REQUERIMIENTO.JSP");  // index 7
+
+        permisosActivos = new boolean[lista.size()];
+
+        // Recorre la lista de permisos obtenidos y marca los permisos activos
+        for (int i = 0; i < listaPermisos.size(); i++) {
+            for (int j = 0; j < lista.size(); j++) {
+
+                if (listaPermisos.get(i).equalsIgnoreCase(lista.get(j))) {
+                    permisosActivos[j] = true;
+                    System.out.println("Usuario ROL: " + rut2 + " tiene permiso: " + lista.get(j));
+                }
+            }
+        }
+        System.out.println("Paginas totales: " + listaPermisos.size());
+    } else {
+        // En caso de que rol2 sea null, evitar error al intentar acceder a permisosActivos
+        permisosActivos = new boolean[0];
+    }
 %>
+
+
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="Home.jsp">Inicio</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,28 +56,30 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav">
-
+            <!-- 
             <li class="nav-item active">
                 <a class="nav-link" href="#">Registros</a>
-            </li>
-            
-           <li class="nav-item dropdown">
+            </li>-->
+
+            <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Gestion de Usuario
+                    Usuario
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <% if (permisosActivos[0]) { %>
                     <a class="dropdown-item" href="registrar_usuario.jsp">Registrar Usuario</a>
-                    <a class="dropdown-item" href="editar_cuenta.jsp">Editar datos de cuenta</a>
-                    <a class="dropdown-item" href="buscar_usuario.jsp">Buscar Cuenta de usuario</a>
+                    <%}%>
+                    <%if (permisosActivos[1]) {%><a class="dropdown-item" href="editar_cuenta.jsp">Editar Cuenta</a><%}%>
+                    <%if (permisosActivos[2]) {%><a class="dropdown-item" href="buscar_usuario.jsp">Buscar Cuenta de usuario</a><%}%>
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Gestion de inventario
+                    Inventarios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="crear_inventario.jsp">Crear Inventario</a>
-                    <a class="dropdown-item" href="buscar_inventario.jsp">Editar Inventario</a>
+                    <%if (permisosActivos[3]) {%><a class="dropdown-item" href="crear_inventario.jsp">Crear Inventario</a><%}%>
+                    <%if (permisosActivos[4]) {%><a class="dropdown-item" href="buscar_inventario.jsp">Editar Inventario</a><%}%>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -40,35 +87,24 @@
                     Inventarios Creados
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <% /* Si hay inventarios, los mostramos aquí */ %>
+                   <%if (permisosActivos[5]) {%><a class="dropdown-item" href="Inventario_dinamico.jsp"> </a><%}%>
                 </div>
             </li>
-            <!--
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Matricula
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="matricular.jsp">Matricular</a>
-                    <a class="dropdown-item" href="editar_matricula.jsp">Editar Matricula</a>
-                </div>
-            </li>
-            -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Informes
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="">Inventario</a>
+
                 </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Requerimientos
                 </a>
-                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="ingreso_requerimiento.jsp">Ingresar solicitud</a>
-                    <a class="dropdown-item" href="estado_requerimiento.jsp">Estado de solicitud</a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <%if (permisosActivos[6]) {%><a class="dropdown-item" href="ingreso_requerimiento.jsp">Ingresar solicitud</a><%}%>
+                    <%if (permisosActivos[7]) {%><a class="dropdown-item" href="estado_requerimiento.jsp">Estado de solicitud</a><%}%>
                 </div>
             </li>
             <!-- Botón para cerrar sesión -->

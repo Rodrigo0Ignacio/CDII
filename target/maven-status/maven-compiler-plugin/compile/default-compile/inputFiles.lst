@@ -10,6 +10,7 @@ C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\controlador\servlet
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\controlador\servlet\usuario\CerrarSesion.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\entidad\usuario\Operacion.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\entidad\permisos\Roles.java
+C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\EPermisos.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\sql\conexion\SQL_Conexion.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\entidad\permisos\Permisos.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\sql\usuario\CRUD_Usuario.java
@@ -22,6 +23,7 @@ C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\controlador\servlet
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\sql\inventario\CRUD_BuscarInventario.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\entidad\inventario\Inventario.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\entidad\usuario\Roles.java
+C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\EPrefijo.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\cifrado\Clave.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\entidad\inventario\TablaCreada.java
 C:\Users\rodri\OneDrive\Documentos\GitHub\CDII\src\main\java\modelo\cifrado\ClaveGenerador.java

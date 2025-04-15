@@ -6,21 +6,34 @@ package modelo;
  * @author Admin_sala
  */
 public class DatosFormulario {
+    private String rut;
+    private String rol;
     private String nombreInventario;
     private boolean autoIdentifiers;
     private boolean visibility;
     private String[] headers;
-    private String[] selectValues; // Agregar campo para los valores seleccionados de los select
+    private String[] selectValues;
 
-    public DatosFormulario(String nombreInventario, boolean autoIdentifiers, boolean visibility, String[] headers, String[] selectValues) {
-        this.nombreInventario = nombreInventario;
-        this.autoIdentifiers = autoIdentifiers;
-        this.visibility = visibility;
-        this.headers = headers;
-        this.selectValues = selectValues; // Inicializar los valores seleccionados de los select
+    // Constructor sin argumentos (obligatorio para Gson)
+    public DatosFormulario() {
     }
-    
-    public DatosFormulario(){}
+
+    // Getters y Setters
+    public String getRut() {
+        return rut;
+    }
+
+    public void setRut(String rut) {
+        this.rut = rut;
+    }
+
+    public String getRol() {
+        return rol;
+    }
+
+    public void setRol(String rol) {
+        this.rol = rol;
+    }
 
     public String getNombreInventario() {
         return nombreInventario;

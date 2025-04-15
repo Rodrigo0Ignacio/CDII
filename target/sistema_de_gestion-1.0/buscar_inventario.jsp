@@ -7,15 +7,12 @@
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
-<%@ include file="JSP_detalles/validacionSesion.jsp" %>
 <%
-    String jspName = request.getServletPath(); // Obtiene el nombre del archivo JSP
-
-    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1, jspName.length()).toUpperCase());
-    
+    String jspName = request.getServletPath();
+    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1).toUpperCase());
     System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
-
 %>
+<%@ include file="JSP_detalles/validacionSesion.jsp" %>
 <%
     // Obtener los ArrayList enviados desde el servlet
     ArrayList<String> cabezera = (ArrayList<String>)request.getAttribute("encabezado");

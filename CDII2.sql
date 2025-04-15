@@ -6,7 +6,8 @@
 -- Tiempo de generación: 01-03-2025 a las 04:22:36
 -- Versión del servidor: 9.1.0
 -- Versión de PHP: 8.2.24
-
+CREATE DATABASE CDII2;
+USE CDII2;
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";

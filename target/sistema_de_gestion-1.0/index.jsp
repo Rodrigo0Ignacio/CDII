@@ -3,12 +3,9 @@
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%
-    String jspName = request.getServletPath(); // Obtiene el nombre del archivo JSP
-
-    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1, jspName.length()).toUpperCase());
-    
+    String jspName = request.getServletPath();
+    request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1).toUpperCase());
     System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
-
 %>
 <!DOCTYPE html>
 

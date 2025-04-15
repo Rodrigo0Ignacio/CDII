@@ -12,6 +12,7 @@ modelo\entidad\permisos\Roles.class
 modelo\sql\usuario\CRUD_Usuario.class
 modelo\sql\conexion\Test_Conexion.class
 modelo\entidad\inventario\Inventario.class
+modelo\EPrefijo.class
 modelo\entidad\usuario\Usuario.class
 modelo\entidad\usuario\Roles.class
 modelo\DatosFormulario.class
@@ -21,6 +22,7 @@ modelo\sql\inventario\CRUD_CreaTabla.class
 controlador\servlet\usuario\Sesion.class
 controlador\permisos\Control.class
 modelo\cifrado\ClaveGenerador.class
+modelo\EPermisos.class
 controlador\servlet\procesos\Creacion_Inventario.class
 modelo\cifrado\AESEncryption.class
 modelo\cifrado\Clave.class

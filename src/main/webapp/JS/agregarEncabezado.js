@@ -43,6 +43,12 @@ function createHeaderElements() {
     input.classList.add("form-control", "me-2");
     headerDiv.appendChild(input);
 
+    // Imprimir los valores de los select e input creados
+    console.log("Encabezado creado: ", {
+        selectOptions: options,
+        inputName: input.name
+    });
+
     return headerDiv;
 }
 
@@ -59,13 +65,20 @@ function addHeader() {
     saveButton.onclick = function () {
         var select = headerDiv.querySelector('select');
         var input = headerDiv.querySelector('input');
+
+        // Imprimir los valores del select y input cuando se guarda
+        console.log("Guardando encabezado con valores: ", {
+            tipoCampo: select.value,
+            descripcion: input.value
+        });
+
         if (select.value.trim() === "" || input.value.trim() === "") {
             alert("Selecciona un tipo de campo y proporciona un nombre de columna.");
         } else {
-            select.disabled = true; // Desactivar el select al hacer clic en Guardar
-            input.disabled = true; // Desactivar el input al hacer clic en Guardar
-            saveButton.disabled = true; // Desactivar el botón Guardar
-            deleteButton.disabled = true; // Desactivar el botón Eliminar
+            select.disabled = true;
+            input.disabled = true;
+            saveButton.disabled = true;
+            deleteButton.disabled = true;
         }
     };
     headerDiv.appendChild(saveButton);
@@ -74,7 +87,7 @@ function addHeader() {
     deleteButton.type = "button";
     deleteButton.classList.add("btn", "btn-danger");
     deleteButton.textContent = "Eliminar";
-    deleteButton.onclick = deleteHeader; // Llamar directamente a la función deleteHeader
+    deleteButton.onclick = deleteHeader;
     headerDiv.appendChild(deleteButton);
 
     // Agregar los elementos al contenedor
@@ -93,9 +106,17 @@ function deleteHeader() {
 }
 
 function sendFormDataToServlet() {
+   
     var nombreInventario = document.getElementById("inventoryName").value;
     var autoIdentifiers = document.getElementById("autoIdentifiers").checked;
     var visibility = document.getElementById("visibility").checked;
+
+    // Imprimir los datos del formulario antes de enviarlos
+    console.log("Datos del formulario: ", {
+        nombreInventario: nombreInventario,
+        autoIdentifiers: autoIdentifiers,
+        visibility: visibility
+    });
 
     if (nombreInventario.trim() === "" || nombreInventario.includes(' ')) {
         alert("El nombre del inventario no debe estar vacío ni contener espacios.");
@@ -138,6 +159,9 @@ function sendFormDataToServlet() {
         selectValues.push(select.value);
     });
 
+    // Imprimir los valores de los select
+    console.log("Valores de los select: ", selectValues);
+
     var data = {
         nombreInventario: nombreInventario,
         autoIdentifiers: autoIdentifiers,
@@ -159,28 +183,22 @@ function sendFormDataToServlet() {
         }
         return response.json().catch(() => {
             throw new Error("La respuesta no es un JSON válido.");
-            
         });
     }).then(data => {
         if (data) {
-            console.log(data);
+            console.log("Respuesta del servidor: ", data);
             if (data.status && data.status === "exists") {
                 alert("La tabla ya existe.");
-                location.reload(); // Refrescar la página
             } else {
                 alert("La tabla se creó correctamente.");
-                location.reload(); // Refrescar la página
             }
         }
     }).catch(error => {
         console.error('Error:', error.toString());
         alert('Ocurrió un error al procesar la solicitud. Consulte la consola para más detalles.');
-        location.reload(); // Refrescar la página
     });
 }
-
 
 function hasDuplicates(array) {
     return new Set(array).size !== array.length;
 }
-
