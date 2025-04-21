@@ -5,15 +5,15 @@
 <%@ page import="java.util.List" %>
 <%@ page import="modelo.sql.permisos.CRUD_Permisos" %>
 <%
-    String rut2 = (String) session.getAttribute("RUT");
+    String rutValidacion  = (String) session.getAttribute("RUT");
     List<String> listaPermisos = null;
-    System.out.println("RUT " + rut2);
+    //System.out.println("RUT " + rutValidacion );
     ArrayList<String> lista = new ArrayList();
     boolean[] permisosActivos;
 
-    if (rut2 != null) {
+    if (rutValidacion  != null) {
         CRUD_Permisos permisos = new CRUD_Permisos();
-        listaPermisos = permisos.obtenerPermisos(rut2);
+        listaPermisos = permisos.obtenerPermisos(rutValidacion);
 
         // Elimina duplicados de listaPermisos usando un Set
         Set<String> permisosSet = new HashSet<>(listaPermisos);
@@ -25,7 +25,7 @@
         lista.add("BUSCAR_USUARIO.JSP");    // index 2
         lista.add("CREAR_INVENTARIO.JSP");  // index 3
         lista.add("BUSCAR_INVENTARIO.JSP"); // index 4
-        lista.add("INVENTARIO_DINAMICO.JSP");                    // index 5
+        lista.add("INVENTARIO_DINAMICO.JSP"); // index 5
         lista.add("INGRESO_REQUERIMIENTO.JSP"); // index 6
         lista.add("ESTADO_REQUERIMIENTO.JSP");  // index 7
 
@@ -37,11 +37,11 @@
 
                 if (listaPermisos.get(i).equalsIgnoreCase(lista.get(j))) {
                     permisosActivos[j] = true;
-                    System.out.println("Usuario ROL: " + rut2 + " tiene permiso: " + lista.get(j));
+                    //System.out.println("Usuario ROL: " + rutValidacion + " tiene permiso: " + lista.get(j));
                 }
             }
         }
-        System.out.println("Paginas totales: " + listaPermisos.size());
+       // System.out.println("Paginas totales: " + listaPermisos.size());
     } else {
         // En caso de que rol2 sea null, evitar error al intentar acceder a permisosActivos
         permisosActivos = new boolean[0];
@@ -67,10 +67,10 @@
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                     <% if (permisosActivos[0]) { %>
-                    <a class="dropdown-item" href="registrar_usuario.jsp">Registrar Usuario</a>
+                    <a class="dropdown-item" href="registrar_usuario.jsp">Registrar usuario</a>
                     <%}%>
-                    <%if (permisosActivos[1]) {%><a class="dropdown-item" href="editar_cuenta.jsp">Editar Cuenta</a><%}%>
-                    <%if (permisosActivos[2]) {%><a class="dropdown-item" href="buscar_usuario.jsp">Buscar Cuenta de usuario</a><%}%>
+                    <%if (permisosActivos[1]) {%><a class="dropdown-item" href="editar_cuenta.jsp">Editar cuenta</a><%}%>
+                    <%if (permisosActivos[2]) {%><a class="dropdown-item" href="buscar_usuario.jsp">Buscar cuenta de usuario</a><%}%>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -78,8 +78,8 @@
                     Inventarios
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <%if (permisosActivos[3]) {%><a class="dropdown-item" href="crear_inventario.jsp">Crear Inventario</a><%}%>
-                    <%if (permisosActivos[4]) {%><a class="dropdown-item" href="buscar_inventario.jsp">Editar Inventario</a><%}%>
+                    <%if (permisosActivos[3]) {%><a class="dropdown-item" href="crear_inventario.jsp">Crear inventario</a><%}%>
+                    <%if (permisosActivos[4]) {%><a class="dropdown-item" href="buscar_inventario.jsp">Editar inventario</a><%}%>
                 </div>
             </li>
             <li class="nav-item dropdown">

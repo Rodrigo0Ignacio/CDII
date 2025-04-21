@@ -10,13 +10,13 @@
     } else {
 
         // Obtener los atributos de sesión
-        String rut = (String) session.getAttribute("RUT");
-        String nombre = (String) session.getAttribute("NOMBRE");
+        String rutV = (String) session.getAttribute("RUT");
+        //String nombre = (String) session.getAttribute("NOMBRE");
         String rol = (String) session.getAttribute("ROL");
         String directorio = (String) session.getAttribute("DIRECTORIO_ACTUAL");
 
         // Validar que los atributos esenciales existan
-        if (rut == null || rol == null || directorio == null) {
+        if (rutV == null || rol == null || directorio == null) {
             response.sendRedirect("index.jsp");
             return;
         }
@@ -25,7 +25,7 @@
         if (!"PERMISOS_ERROR.JSP".equalsIgnoreCase(directorio)) {
             try {
                 CRUD_Permisos permisos = new CRUD_Permisos();
-                List<String> listaPermisos = permisos.obtenerPermisos(rut);
+                List<String> listaPermisos = permisos.obtenerPermisos(rutV);
 
                 boolean tienePermiso = listaPermisos.stream()
                         .anyMatch(p -> p.equalsIgnoreCase(directorio));

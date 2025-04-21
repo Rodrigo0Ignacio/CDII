@@ -3,7 +3,7 @@
 <%
     String jspName = request.getServletPath();
     request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1).toUpperCase());
-    System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
+    //System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
 
     String msjParam = (String) request.getAttribute("msj");
     

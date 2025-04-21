@@ -4,7 +4,8 @@
 <%
     String jspName = request.getServletPath();
     request.getSession().setAttribute("DIRECTORIO_ACTUAL", jspName.substring(1).toUpperCase());
-    System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
+    //System.out.println("NOMBRE DE DIRECTORIO: " + session.getAttribute("DIRECTORIO_ACTUAL"));
+    
 %>
 <%@ include file="JSP_detalles/validacionSesion.jsp" %>
 
@@ -99,6 +100,15 @@
                 <span><%= request.getAttribute("mensaje")%></span>
                 <script>
                     alert("<%= request.getAttribute("mensaje")%>");
+                </script>
+            </div>
+            <% } %>
+            <!-- Mensajes de alerta -->
+            <% if (request.getAttribute("mensaje2") != null) {%>
+            <div class="alert alert-danger" role="alert" id="alerta-exito">
+                <span><%= request.getAttribute("mensaje2")%></span>
+                <script>
+                    alert("<%= request.getAttribute("mensaje2")%>");
                 </script>
             </div>
             <% } %>

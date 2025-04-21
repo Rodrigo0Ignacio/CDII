@@ -6,11 +6,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
-import java.util.Iterator;
 import modelo.entidad.usuario.Usuario;
-import modelo.sql.usuario.CRUD_Sesion;
 import modelo.sql.usuario.CRUD_Usuario;
-import modelo.sql.interface_CRUD.CRUD;
 
 /**
  *
@@ -45,6 +42,8 @@ public class Servlet_Usuario extends HttpServlet {
         String pass2 = request.getParameter("pass2");
         Boolean mostrarContrasena = request.getParameter("pedirPassword") != null;
         String rol = request.getParameter("rol");
+        String directorio = request.getParameter("directorio");
+        //EDITAR_CUENTA.JSP
 
         ArrayList<String> listaErrores = new ArrayList<>();
 
@@ -87,6 +86,7 @@ public class Servlet_Usuario extends HttpServlet {
         if (listaErrores.isEmpty()) {
             try {
                 CRUD_Usuario crud_user = new CRUD_Usuario();
+
                 Usuario usuario = new Usuario(
                         0,
                         rut,
@@ -100,13 +100,28 @@ public class Servlet_Usuario extends HttpServlet {
                         mostrarContrasena,
                         Integer.parseInt(rol)
                 );
+                
 
-                crud_user.crear(usuario);
-                System.out.println("servlet_usuario: usuario registrado!");
+                if (directorio != null) {
+                    
 
-                // Mensaje de éxito
-                request.setAttribute("mensaje", "Usuario Registrado");
-                request.getRequestDispatcher("registrar_usuario.jsp").forward(request, response);
+                    crud_user.actualizar(usuario, String.valueOf(crud_user.buscarID(rut)));
+                    
+                    request.setAttribute("mensaje", "Usuario Actualizado");
+                    request.getRequestDispatcher("google.cl").forward(request, response);
+                    
+                    System.out.println("servlet_usuario: usuario Actualizado!");
+
+                } else {
+
+                    crud_user.crear(usuario);
+                    System.out.println("servlet_usuario: usuario registrado!");
+
+                    // Mensaje de éxito
+                    request.setAttribute("mensaje", "Usuario Registrado");
+                    request.getRequestDispatcher("registrar_usuario.jsp").forward(request, response);
+
+                }
 
             } catch (Exception e) {
                 // Manejo de excepciones

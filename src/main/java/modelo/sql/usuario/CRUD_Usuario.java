@@ -18,6 +18,39 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
         clave = new Clave();
     }
 
+    public boolean buscarUsuario(String rut, String email) {
+        String query = "SELECT * FROM usuario WHERE rut_usuario = ? OR email = ?";
+
+        try {
+            ps = conectar().prepareStatement(query);
+            ps.setString(1, rut);
+            ps.setString(2, email);
+            rs = ps.executeQuery();
+
+            // Si encuentra al menos un resultado, retorna true
+            if (rs.next()) {
+                return true;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Imprime error en consola
+        } finally {
+            // Cierra recursos (opcional, pero recomendado)
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return false; // Si no encontró usuario
+    }
+
     @Override
     public void crear(Usuario objeto) {
 
@@ -37,7 +70,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
             ps.setString(5, objeto.getMaterno());
             ps.setString(6, objeto.getEmail());
             ps.setDate(7, obtenerFechaActual());
-            ps.setString(8,objeto.getPassword());
+            ps.setString(8, objeto.getPassword());
             ps.setBoolean(9, objeto.getCambioPass());
             ps.setInt(10, objeto.getRol());
 
@@ -124,6 +157,38 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
         }
     }
 
+    public int buscarID(String rut) {
+        int id = 0; // Valor por defecto si no se encuentra
+
+        String query = "SELECT id_usuario as id FROM usuario WHERE rut_usuario = ?";
+
+        try {
+            ps = conectar().prepareStatement(query);
+            ps.setString(1, rut);
+            rs = ps.executeQuery();
+
+            if (rs.next()) {
+                id = rs.getInt("id"); // Recupera el ID del resultado
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace(); // Imprime el error en consola
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+
+        return id;
+    }
+
     @Override
     public void eliminar(String i) {
 
@@ -150,4 +215,41 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
         }
 
     }
+    
+    public ArrayList<Usuario> buscarPorRut(String rut) {
+    String query = "SELECT * FROM Usuario WHERE rut_usuario = ?";
+    ArrayList<Usuario> lista = new ArrayList<>();
+
+    try {
+        ps = conectar().prepareStatement(query);
+        ps.setString(1, rut);
+        rs = ps.executeQuery();
+
+        while (rs.next()) {
+            lista.add(
+                new Usuario(
+                    rs.getInt(1), rs.getString(2),
+                    rs.getString(3), rs.getString(4),
+                    rs.getString(5), rs.getString(6),
+                    rs.getString(7), rs.getDate(8),
+                    rs.getString(9), rs.getBoolean(10),
+                    rs.getInt(11)
+                )
+            );
+        }
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    } finally {
+        try {
+            if (rs != null) rs.close();
+            if (ps != null) ps.close();
+            Desconectar();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    return lista;
+}
 }
