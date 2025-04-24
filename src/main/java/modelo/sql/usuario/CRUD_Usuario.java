@@ -116,8 +116,9 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
     @Override
     public void actualizar(Usuario objeto, String idUsuario) {
-        String query = "UPDATE Usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
-                + " cambioPass = ?, id_rol = ? WHERE id_usuario = ?";
+        String query = "UPDATE usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
+                + " cambioPassword = ?, id_rol = ? WHERE id_usuario = ?";
+
 
         try {
             ps = conectar().prepareStatement(query);
@@ -129,14 +130,8 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
             ps.setString(5, objeto.getMaterno());
             ps.setString(6, objeto.getEmail());
 
-            // Cifrar la contraseña antes de almacenarla
-            try {
-                String passwordCifrada = clave.cifrar(objeto.getPassword());
-                ps.setString(7, passwordCifrada);
-            } catch (Exception ex) {
-                Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, "Error al cifrar la contraseña", ex);
-                return; // Salir del método si ocurre un error en el cifrado
-            }
+            // Sin cifrado de contraseña
+            ps.setString(7, objeto.getPassword());
 
             ps.setBoolean(8, objeto.getCambioPass());
             ps.setInt(9, objeto.getRol());
@@ -147,6 +142,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
             if (rowsAffected > 0) {
                 System.out.println("Actualización exitosa.");
+                
             } else {
                 System.out.println("No se encontró el registro con el ID proporcionado.");
             }
@@ -215,41 +211,45 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
         }
 
     }
-    
+
     public ArrayList<Usuario> buscarPorRut(String rut) {
-    String query = "SELECT * FROM Usuario WHERE rut_usuario = ?";
-    ArrayList<Usuario> lista = new ArrayList<>();
+        String query = "SELECT * FROM Usuario WHERE rut_usuario = ?";
+        ArrayList<Usuario> lista = new ArrayList<>();
 
-    try {
-        ps = conectar().prepareStatement(query);
-        ps.setString(1, rut);
-        rs = ps.executeQuery();
-
-        while (rs.next()) {
-            lista.add(
-                new Usuario(
-                    rs.getInt(1), rs.getString(2),
-                    rs.getString(3), rs.getString(4),
-                    rs.getString(5), rs.getString(6),
-                    rs.getString(7), rs.getDate(8),
-                    rs.getString(9), rs.getBoolean(10),
-                    rs.getInt(11)
-                )
-            );
-        }
-
-    } catch (SQLException e) {
-        e.printStackTrace();
-    } finally {
         try {
-            if (rs != null) rs.close();
-            if (ps != null) ps.close();
-            Desconectar();
+            ps = conectar().prepareStatement(query);
+            ps.setString(1, rut);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                lista.add(
+                        new Usuario(
+                                rs.getInt(1), rs.getString(2),
+                                rs.getString(3), rs.getString(4),
+                                rs.getString(5), rs.getString(6),
+                                rs.getString(7), rs.getDate(8),
+                                rs.getString(9), rs.getBoolean(10),
+                                rs.getInt(11)
+                        )
+                );
+            }
+
         } catch (SQLException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+                Desconectar();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
-    }
 
-    return lista;
-}
+        return lista;
+    }
 }

@@ -22,6 +22,12 @@ public class Sesion extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        String recuperacionPassword = request.getParameter("recuperacion");
+        System.out.println("Datos capturados: "+recuperacionPassword);
+        response.sendRedirect("index.jsp");
+        
+        
     }
 
     @Override

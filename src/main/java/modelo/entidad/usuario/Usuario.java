@@ -63,6 +63,8 @@ public class Usuario {
         this.Password = password;
         this.rol = rol;
     }
+    
+    public Usuario(){}
 
     public int getId_usuario() {
         return id_usuario;

@@ -14,10 +14,10 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link href="CSS/fooster.css" rel="stylesheet">
         <%@ include file="JSP_detalles/CDN.jsp" %>
-         <!-- incluir encabezado -->
+        <!-- incluir encabezado -->
         <%@ include file="JSP_detalles/logo.jsp" %>
         <title>Sistema de gestion - Login</title>
 
@@ -29,7 +29,7 @@
                     <img src="IMG/logo.png" class="img-fluid rounded float-start" alt="logo" width="100" height="100">
                     <div class="col"> <span class="font-weight-normal"> Liceo Juan Dante Parraguez Arellano</span> </div>
                     <div class="col"> <span class="font-weight-normal">Sistema de Inventario integral</span> </div>
-                    
+
                 </div>
             </div>
             <hr>
@@ -49,24 +49,44 @@
                             <label for="exampleInputPassword1" class="form-label">contraseña</label>
                             <input type="password" name="contra" class="form-control" id="exampleInputPassword1" required>
                         </div>
-                        <div class="mb-3 form-check">
+                        <div class="mb-1 form-check">
                             <input type="checkbox" class="form-check-input" id="exampleCheck1">
                             <label class="form-check-label" for="exampleCheck1">recordar credenciales</label>
+
                         </div>
-                        <button type="submit" class="btn btn-primary">Ingresar</button> 
+                        <div class=" form-check">
+                            <a href="#" onclick="enviarUsuario()" class="a">
+                                <label>Recuperar contraseña</label>
+                            </a>
+                        </div>
+                        <div class="mt-4">
+                            <button type="submit" class="btn btn-primary">Ingresar</button> 
+                        </div>
+
+
                     </form>
                 </div>
 
                 <!-- CODIGO SOLO SIRVE PARA MOSTRAR MENSAJE -->
-                <% if (request.getAttribute("valida") != null && (boolean)request.getAttribute("valida") != true) { %>
+                <% if (request.getAttribute("valida") != null && (boolean) request.getAttribute("valida") != true) { %>
                 <div class="alert alert-danger" role="alert" id="alerta">
                     <span>Usuario no encontrado</span>
                 </div>
-                <script src="JS/alerta.js"> </script>
-                <% } %>
+                <script src="JS/alerta.js"></script>
+                <% }%>
 
             </div>
         </div>
+        <script>
+                                function enviarUsuario() {
+                                    const usuario = document.getElementsByName('usuario')[0].value;
+                                    if (usuario) {
+                                        window.location.href = 'Sesion?recuperacion=' + encodeURIComponent(usuario);
+                                    } else {
+                                        alert("Por favor, ingresa tu usuario para recuperar la contraseña.");
+                                    }
+                                }
+        </script>
         <!-- pie de pagina -->
         <%@ include file="JSP_detalles/pie_de_pagina.jsp" %>
 
