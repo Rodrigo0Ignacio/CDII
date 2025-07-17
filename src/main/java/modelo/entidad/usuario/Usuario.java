@@ -43,6 +43,14 @@ public class Usuario {
         this.rol = rol;
     }
 
+    public Usuario(String rut_usuario, String primerNombre, String paterno, String materno) {
+        this.rut_usuario = rut_usuario;
+        this.primerNombre = primerNombre;
+        this.paterno = paterno;
+        this.materno = materno;
+    }
+        
+
     /*DATOS PARA INICIAR SESION*/
     public Usuario(String rut_usuario, String Password, int rol) {
         this.rut_usuario = rut_usuario;

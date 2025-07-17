@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.entidad.permisos.Permisos;
-import modelo.entidad.usuario.Usuario;
 import modelo.sql.conexion.SQL_Conexion;
 import modelo.sql.interface_CRUD.CRUD;
 

@@ -29,7 +29,7 @@
 
         <div class="container">
             <br>
-            <form class="form col col-lg-8" action="Servlet_Usuario" method="post" id="form_registro_usuario">
+            <form class="form col col-lg-8" action="Ingreso_requerimiento" method="post" enctype="multipart/form-data" id="form_registro_usuario">
                 <h2>Ingreso de Requerimiento</h2>
                 <br>
                 <div class="mb-3">
@@ -40,7 +40,7 @@
                         </div>
                         <div class="col">
                             <label for="exampleInputEmail1" class="form-label">Fecha Actual <span class="text-danger">*</span></label>
-                            <input name="segundoNombre" type="date" class="form-control" id="fechaActual" aria-describedby="emailHelp" required="true">
+                            <input name="fecha" type="date" class="form-control" id="fechaActual" aria-describedby="emailHelp" required="true">
                         </div>
                     </div>
                 </div>
@@ -49,12 +49,12 @@
                         <div class="col">
                             <div class="form-group">
                                 <label for="sel1">Tipo de Requerimiento</label>
-                                <select class="form-control" id="tipo_req">
-                                    <option selected  disabled>seleccione tipo</option>
-                                    <option>Peticion de Materiales</option>
-                                    <option>Peticion de maquinaria</option>
-                                    <option>Peticion de Mantenimiento</option>
-                                    <option>Otros</option>
+                                <select name="req" class="form-control" id="tipo_req">
+                                    <option value="seleccione tipo" selected  disabled>seleccione tipo</option>
+                                    <option value="Peticion de Materiales">Peticion de Materiales</option>
+                                    <option value="Peticion de maquinaria">Peticion de maquinaria</option>
+                                    <option value="Peticion de Mantenimiento">Peticion de Mantenimiento</option>
+                                    <option value="Otros">Otros</option>
                                 </select>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                             <label for="exampleInputEmail1" class="form-label">
                                 Adjuntar archivos <span class="text-danger">*</span>
                             </label>
-                            <input name="materno[]" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" required multiple>
+                            <input name="archivos[]" type="file" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" multiple>
                         </div>
                     </div>
                 </div>
@@ -110,10 +110,7 @@
                 <div class="mb-3">
                     <div class="row">
                         <div class="col">
-                            <button type="button" class="btn btn-primary">Ingresar Requerimiento</button>
-                        </div>
-                        <div class="col">
-                            <button type="button" class="btn btn-danger">Guardar Borrador</button>
+                            <button type="submit" class="btn btn-primary">Ingresar Requerimiento</button>
                         </div>
                     </div>
                 </div>

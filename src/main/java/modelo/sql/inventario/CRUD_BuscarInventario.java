@@ -2,6 +2,7 @@ package modelo.sql.inventario;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.sql.conexion.SQL_Conexion;
@@ -12,7 +13,7 @@ import modelo.sql.conexion.SQL_Conexion;
  */
 public class CRUD_BuscarInventario extends SQL_Conexion {
 
-    /*CRUD DE BUSQUEDA DE UN INVENTARIO*/
+   /*CRUD DE BUSQUEDA DE UN INVENTARIO*/
     private ArrayList<String> listaTablas = new ArrayList<>();
     private ArrayList<String> encabezados = new ArrayList<>();
     
@@ -43,4 +44,3 @@ public class CRUD_BuscarInventario extends SQL_Conexion {
         return listaTablas;
     }
 }
-

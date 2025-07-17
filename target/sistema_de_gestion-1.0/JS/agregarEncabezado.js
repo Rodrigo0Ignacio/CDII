@@ -106,7 +106,7 @@ function deleteHeader() {
 }
 
 function sendFormDataToServlet() {
-   
+
     var nombreInventario = document.getElementById("inventoryName").value;
     var autoIdentifiers = document.getElementById("autoIdentifiers").checked;
     var visibility = document.getElementById("visibility").checked;
@@ -176,27 +176,27 @@ function sendFormDataToServlet() {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
-    }).then(response => {
-        if (response.redirected) {
-            window.location.href = response.url;
-            return;
-        }
-        return response.json().catch(() => {
-            throw new Error("La respuesta no es un JSON válido.");
-        });
-    }).then(data => {
-        if (data) {
-            console.log("Respuesta del servidor: ", data);
-            if (data.status && data.status === "exists") {
-                alert("La tabla ya existe.");
-            } else {
-                alert("La tabla se creó correctamente.");
-            }
-        }
-    }).catch(error => {
-        console.error('Error:', error.toString());
-        alert('Ocurrió un error al procesar la solicitud. Consulte la consola para más detalles.');
-    });
+    })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Respuesta del servidor:", data);
+
+                if (data.status === "exists") {
+                    alert(data.message); // Tabla ya existe
+                    location.reload();
+                } else if (data.status === "success") {
+                    alert(data.message); // Inventario creado correctamente
+                    location.reload();
+                } else if (data.status === "error") {
+                    alert(data.message); // Algún error
+                    location.reload();
+                }
+            })
+            .catch(error => {
+                console.error('Error en el fetch:', error);
+                alert('Ocurrió un error inesperado.');
+            });
+
 }
 
 function hasDuplicates(array) {

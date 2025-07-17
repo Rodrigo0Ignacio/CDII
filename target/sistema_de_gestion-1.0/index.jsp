@@ -1,5 +1,4 @@
 
-
 <%@ page language="java" session="true" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%
@@ -73,6 +72,30 @@
                     <span>Usuario no encontrado</span>
                 </div>
                 <script src="JS/alerta.js"></script>
+                <% }%>
+                <% if (request.getAttribute("msj") != null) {%>
+                <div class="alert alert-warning" role="alert" id="alerta">
+                    <span><%=request.getAttribute("msj")%></span>
+                    <script>alert("<%=request.getAttribute("msj")%>");</script>
+                </div>
+                <script src="JS/alerta.js"></script>
+                <% }%>
+                <% if (request.getAttribute("ms") != null) {%>
+                <% if (request.getAttribute("ms").equals("Contraseña actualizada!")) {%>
+                <div class="alert alert-success" role="alert" id="alerta">
+                    <span><%=request.getAttribute("ms")%></span>
+                    <script>alert("<%=request.getAttribute("ms")%>");</script>
+                </div>
+                <script src="JS/alerta.js"></script>
+                <% } else {%>
+
+                <div class="alert alert-warning" role="alert" id="alerta">
+                    <span><%=request.getAttribute("ms")%></span>
+                    <script>alert("<%=request.getAttribute("ms")%>");</script>
+                </div>
+                <script src="JS/alerta.js"></script>
+
+                <% }%>
                 <% }%>
 
             </div>

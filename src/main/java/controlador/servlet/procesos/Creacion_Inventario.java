@@ -103,6 +103,8 @@ public class Creacion_Inventario extends HttpServlet {
         }
 
         out.println(jsonResponse.toString()); // <- ASEGÚRATE DE SIEMPRE ENVIAR RESPUESTA
+        out.close();
+        
     }
 
     @Override

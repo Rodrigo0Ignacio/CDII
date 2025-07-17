@@ -54,7 +54,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
     @Override
     public void crear(Usuario objeto) {
 
-        query = "INSERT INTO Usuario (id_usuario, rut_usuario, primerNombre,"
+        query = "INSERT INTO usuario (id_usuario, rut_usuario, primerNombre,"
                 + " segundoNombre, paterno, materno, email, fechaCreacion,"
                 + " password, cambioPassword, id_rol)"
                 + " VALUES (NULL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
@@ -87,7 +87,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
     @Override
     public ArrayList<Usuario> leer() {
-        query = "SELECT * FROM Usuario";
+        query = "SELECT * FROM usuario";
         lista = new ArrayList<Usuario>();
 
         try {
@@ -119,7 +119,6 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
         String query = "UPDATE usuario SET rut_usuario = ?, primerNombre = ?, segundoNombre = ?, paterno = ?, materno = ?, email = ?, password = ?,"
                 + " cambioPassword = ?, id_rol = ? WHERE id_usuario = ?";
 
-
         try {
             ps = conectar().prepareStatement(query);
             // Configurar los parámetros del PreparedStatement
@@ -142,7 +141,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
             if (rowsAffected > 0) {
                 System.out.println("Actualización exitosa.");
-                
+
             } else {
                 System.out.println("No se encontró el registro con el ID proporcionado.");
             }
@@ -189,7 +188,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
     public void eliminar(String i) {
 
         // SQL para eliminar un registro basado en el ID
-        String sql = "DELETE FROM Usuario WHERE rut_usuario = ?";
+        String sql = "DELETE FROM usuario WHERE rut_usuario = ?";
 
         try {
 
@@ -213,7 +212,7 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
     }
 
     public ArrayList<Usuario> buscarPorRut(String rut) {
-        String query = "SELECT * FROM Usuario WHERE rut_usuario = ?";
+        String query = "SELECT * FROM usuario WHERE rut_usuario = ?";
         ArrayList<Usuario> lista = new ArrayList<>();
 
         try {
@@ -252,4 +251,105 @@ public class CRUD_Usuario extends SQL_Conexion implements CRUD<Usuario> {
 
         return lista;
     }
+
+    public boolean actualizarPassword(String input, String nuevaPassword) {
+        String query = "UPDATE usuario SET password = ? WHERE rut_usuario = ? OR email = ?";
+        boolean actualizado = false;
+
+        try {
+            ps = conectar().prepareStatement(query);
+
+            // Configurar los parámetros del PreparedStatement
+            ps.setString(1, nuevaPassword); // Nueva contraseña
+
+            // Comprobar si el input es un RUT o un email y establecer el parámetro adecuado
+            if (input.contains("@")) { // Si contiene '@', asumimos que es un email
+                ps.setString(2, null); // Deja el RUT como null
+                ps.setString(3, input); // Establece el email
+            } else { // Si no contiene '@', asumimos que es un RUT
+                ps.setString(2, input); // Establece el RUT
+                ps.setString(3, null); // Deja el email como null
+            }
+
+            // Ejecutar la actualización
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Contraseña actualizada exitosamente.");
+                actualizado = true;
+            } else {
+                System.out.println("No se encontró un usuario con el RUT o Email proporcionado.");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, "Error al actualizar la contraseña", e);
+        } finally {
+            Desconectar(); // Cerrar la conexión en el bloque finally
+        }
+
+        return actualizado;
+    }
+
+    public String obtenerEmail(String input) {
+        String query = "SELECT email FROM usuario WHERE rut_usuario = ? OR email = ?";
+        String email = null;
+
+        try {
+            ps = conectar().prepareStatement(query);
+
+            // Comprobar si el input es un RUT o un email y establecer los parámetros adecuados
+            if (input.contains("@")) { // Si contiene '@', asumimos que es un email
+                ps.setString(1, null);  // Deja el RUT como null
+                ps.setString(2, input); // Establece el email
+            } else { // Si no contiene '@', asumimos que es un RUT
+                ps.setString(1, input); // Establece el RUT
+                ps.setString(2, null);  // Deja el email como null
+            }
+
+            // Ejecutar la consulta
+            rs = ps.executeQuery();
+
+            // Verificar si se obtuvo un resultado
+            if (rs.next()) {
+                email = rs.getString("email");  // Obtener el email
+                System.out.println("Email encontrado: " + email);
+            } else {
+                System.out.println("No se encontró un usuario con el RUT o Email proporcionado.");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, "Error al obtener el email", e);
+        } finally {
+            Desconectar(); // Cerrar la conexión en el bloque finally
+        }
+
+        return email;
+    }
+
+    public boolean actualizarPassword(String email, String passwordActual, String passwordNuevo) {
+        query = "UPDATE usuario SET password = ? WHERE email = ? AND password = ?";
+        boolean exito = false;
+
+        try {
+            ps = conectar().prepareStatement(query);
+
+            ps.setString(1, passwordNuevo);  // Nuevo password
+            ps.setString(2, email);           // Email del usuario
+            ps.setString(3, passwordActual);  // Password actual
+
+            int rowsAffected = ps.executeUpdate();
+
+            if (rowsAffected > 0) {
+                exito = true;
+                System.out.println("Contraseña actualizada exitosamente.");
+            } else {
+                System.out.println("No se encontró un usuario con ese email y contraseña actual.");
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(CRUD_Usuario.class.getName()).log(Level.SEVERE, "Error al actualizar la contraseña", e);
+        } finally {
+            Desconectar(); // Siempre cerrar la conexión
+        }
+
+        return exito;  // Retorna true si se actualizó, false si no
+    }
+
 }

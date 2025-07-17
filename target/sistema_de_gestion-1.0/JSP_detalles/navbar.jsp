@@ -1,3 +1,4 @@
+<%@page import="modelo.sql.inventario.CRUD_BuscarInventario"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.HashSet"%>
 <%@page import="java.util.ArrayList"%>
@@ -5,13 +6,13 @@
 <%@ page import="java.util.List" %>
 <%@ page import="modelo.sql.permisos.CRUD_Permisos" %>
 <%
-    String rutValidacion  = (String) session.getAttribute("RUT");
+    String rutValidacion = (String) session.getAttribute("RUT");
     List<String> listaPermisos = null;
     //System.out.println("RUT " + rutValidacion );
     ArrayList<String> lista = new ArrayList();
     boolean[] permisosActivos;
 
-    if (rutValidacion  != null) {
+    if (rutValidacion != null) {
         CRUD_Permisos permisos = new CRUD_Permisos();
         listaPermisos = permisos.obtenerPermisos(rutValidacion);
 
@@ -41,11 +42,13 @@
                 }
             }
         }
-       // System.out.println("Paginas totales: " + listaPermisos.size());
+        // System.out.println("Paginas totales: " + listaPermisos.size());
     } else {
         // En caso de que rol2 sea null, evitar error al intentar acceder a permisosActivos
         permisosActivos = new boolean[0];
     }
+
+
 %>
 
 
@@ -87,7 +90,9 @@
                     Inventarios Creados
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                   <%if (permisosActivos[5]) {%><a class="dropdown-item" href="Inventario_dinamico.jsp"> </a><%}%>
+                    <% if (permisosActivos[5]) { %><a class="dropdown-item" href="Inventario_dinamico.jsp?nombreInventario="><%}%>
+                    </a>
+
                 </div>
             </li>
             <li class="nav-item dropdown">

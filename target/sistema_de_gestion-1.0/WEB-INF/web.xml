@@ -29,6 +29,10 @@
         <servlet-name>CerrarSesion</servlet-name>
         <servlet-class>controlador.servlet.usuario.CerrarSesion</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Ingreso_requerimiento</servlet-name>
+        <servlet-class>controlador.servlet.requerimiento.Ingreso_requerimiento</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Servlet_Usuario</servlet-name>
         <url-pattern>/Servlet_Usuario</url-pattern>
@@ -52,6 +56,10 @@
     <servlet-mapping>
         <servlet-name>CerrarSesion</servlet-name>
         <url-pattern>/CerrarSesion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Ingreso_requerimiento</servlet-name>
+        <url-pattern>/Ingreso_requerimiento</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>90</session-timeout>
